@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dra. Carina Giuri - Medicina Estética y Flebología</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "brand-primary": "#1F4E5A",
+                        "brand-secondary": "#2A6473",
+                        "brand-accent": "#3D7B8A",
+                        "brand-light": "#E9F2F4",
+                        "brand-cream": "#FFF9F0",
+                        "brand-bg": "#FFFFFF",
+                        "text-main": "#2D3748",
+                        "text-muted": "#718096",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'card': '0 2px 10px -1px rgba(0, 0, 0, 0.03)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Ocultar barra de scroll pero mantener funcionalidad */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Cursor de arrastre para el slider */
+        .cursor-grab {
+            cursor: grab;
+        }
+
+        .cursor-grabbing {
+            cursor: grabbing;
+        }
+
+        /* Modal Transitions (General) */
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Standard Center Modal Animation */
+        .modal-content {
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        /* Mobile Drawer Animation (Side Menu) */
+        #mobile-menu .drawer-content {
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #mobile-menu.active .drawer-content {
+            transform: translateX(0);
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Glassmorphism Refinement */
+        .glass-header {
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(12px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+        }
+
+        .glass-modal {
+            background: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(16px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        }
+
+        /* Tab Styles */
+        .tab-btn.active {
+            color: #1F4E5A;
+            border-bottom: 2px solid #1F4E5A;
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Bullet personalizado para lista de modal */
+        .custom-list li {
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .custom-list li::before {
+            content: "•";
+            color: #1F4E5A;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Slider Navigation Arrows */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1F4E5A;
+            z-index: 10;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider-btn:hover {
+            background: #1F4E5A;
+            color: white;
+            scale: 1.1;
+        }
+
+        .slider-btn.prev {
+            left: -20px;
+        }
+
+        .slider-btn.next {
+            right: -20px;
+        }
+
+        @media (max-width: 640px) {
+            .slider-btn {
+                display: none;
+            }
+        }
+
+        /* Pagination Dots */
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #E2E8F0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #1F4E5A;
+            width: 20px;
+            border-radius: 4px;
+        }
+
+        /* Hover Effects for Cards */
+        #tratamientos .grid>div:hover {
+            transform: translateY(-5px);
+            border-color: #1F4E5A;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Before & After Slider Support */
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            /* Adjusted for better mobile experience */
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 640px) {
+            .comparison-slider {
+                height: 450px;
+            }
+        }
+
+        .comparison-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            user-select: none;
+        }
+
+        .comparison-slider .resize {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .comparison-slider .handle {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--handle-color, #fff);
+            z-index: 3;
+            cursor: ew-resize;
+            transition: background 0.3s ease;
+        }
+
+        .comparison-slider .handle::after {
+            content: "↔";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px;
+            height: 44px;
+            background: var(--handle-color, #fff);
+            color: var(--handle-text-color, #1F4E5A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid #fff;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            min-width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Scroll suave para navegación */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-text-main antialiased selection:bg-brand-gold/30">
+
+    <!-- Header -->
+    <header id="main-header"
+        class="fixed top-0 left-0 right-0 z-[60] glass-header border-b border-gray-100/50 transition-all duration-300">
+        <div class="max-w-md mx-auto px-5 h-[72px] flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <!-- Hamburger Button with OnClick -->
+                <button onclick="openModal('mobile-menu')"
+                    class="text-gray-700 hover:text-brand-primary transition-colors p-1 -ml-1 rounded-lg hover:bg-gray-50">
+                    <span class="material-symbols-outlined text-[28px]">menu</span>
+                </button>
+                <div class="flex flex-col -space-y-0.5">
+                    <h1 class="text-[17px] font-bold text-gray-900 leading-tight font-serif italic">Dra. Carina Giuri
+                    </h1>
+                    <span class="text-[10px] uppercase tracking-[0.1em] font-medium text-brand-secondary">Médica</span>
+                </div>
+            </div>
+            <a href="#book"
+                class="bg-brand-primary hover:bg-brand-secondary text-white text-[13px] font-bold py-2.5 px-5 rounded-full shadow-md shadow-brand-primary/20 transition-all active:scale-95">
+                Pedir Turno
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-md mx-auto w-full flex flex-col min-h-screen bg-white pb-24">
+
+        <!-- Hero Section -->
+        <section class="px-5 pt-8 pb-10 flex flex-col gap-6" id="inicio">
+
+            <!-- Tag -->
+            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand-light w-fit rounded-full self-start">
+                <span class="material-symbols-outlined text-brand-primary text-[16px] fill-1">verified</span>
+                <span class="text-[11px] font-bold text-brand-primary uppercase tracking-wide">Diploma de Honor - Univ.
+                    Favaloro</span>
+            </div>
+
+            <!-- Title & Desc -->
+            <div class="space-y-3 reveal">
+                <h2 class="text-[36px] font-extrabold text-gray-900 leading-[1.1] tracking-tight font-serif italic">
+                    Medicina Estética y <span class="text-brand-primary">Flebología</span> con Excelencia Quirúrgica.
+                </h2>
+                <p class="text-text-muted text-[15px] leading-relaxed font-normal">
+                    Más de 20 años de experiencia uniendo la precisión de la cirugía con el arte de la estética.
+                    Formación internacional y compromiso con la naturalidad.
+                </p>
+            </div>
+
+            <!-- Image Card -->
+            <div class="w-full aspect-[4/3.2] rounded-2xl overflow-hidden relative shadow-lg group mt-2 cursor-pointer"
+                onclick="openModal('cv-modal')">
+                <img src="assets/img/PERFIL.jpg" alt="Dra. Carina Giuri"
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-5 left-5 text-white">
+                    <p class="font-bold text-xl mb-0.5">Dra. Carina Giuri</p>
+                    <p class="text-sm font-medium opacity-90 tracking-wide">MN 23.903.785</p>
+                </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col gap-3 mt-2">
+                <a href="#book"
+                    class="w-full flex items-center justify-center gap-2.5 bg-brand-primary text-white h-[54px] rounded-xl font-bold text-[15px] shadow-lg shadow-brand-primary/20 hover:bg-brand-secondary transition-all active:scale-[0.98]">
+                    <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+                    Reservar Cita
+                </a>
+                <a href="https://wa.me/5493865447836"
+                    class="w-full flex items-center justify-center gap-2.5 bg-gray-50 text-gray-800 border border-gray-100 h-[54px] rounded-xl font-bold text-[15px] hover:bg-gray-100 transition-all active:scale-[0.98]">
+                    <span class="material-symbols-outlined text-[20px]">chat</span>
+                    WhatsApp
+                </a>
+            </div>
+        </section>
+
+        <!-- Stats Scroller -->
+        <section class="border-y border-gray-50 py-10 bg-white overflow-hidden">
+            <div class="max-w-screen-xl mx-auto px-5 relative group/slider">
+                <!-- Navigation Arrows -->
+                <button onclick="scrollSlider('stats-slider', 'prev')"
+                    class="slider-btn prev opacity-0 group-hover/slider:opacity-100">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button onclick="scrollSlider('stats-slider', 'next')"
+                    class="slider-btn next opacity-0 group-hover/slider:opacity-100">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+
+                <div id="stats-slider"
+                    class="flex overflow-x-auto hide-scrollbar gap-4 snap-x snap-mandatory cursor-grab active:cursor-grabbing">
+
+                    <!-- Card 1: Diploma -->
+                    <div
+                        class="snap-center shrink-0 w-[200px] h-[130px] flex flex-col justify-between p-5 rounded-[20px] bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow select-none">
+                        <div
+                            class="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center text-brand-primary">
+                            <span class="material-symbols-outlined text-[22px]">school</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Universidad
+                                Favaloro</p>
+                            <p class="text-[15px] font-bold text-gray-900 leading-tight">Diploma de Honor</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Especialidad -->
+                    <div
+                        class="snap-center shrink-0 w-[200px] h-[130px] flex flex-col justify-between p-5 rounded-[20px] bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow select-none">
+                        <div
+                            class="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center text-brand-primary">
+                            <span class="material-symbols-outlined text-[22px]">medical_services</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Especialidad
+                            </p>
+                            <p class="text-[15px] font-bold text-gray-900 leading-tight">Estética y Flebología</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Ubicación -->
+                    <div
+                        class="snap-center shrink-0 w-[200px] h-[130px] flex flex-col justify-between p-5 rounded-[20px] bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow select-none">
+                        <div
+                            class="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center text-brand-primary">
+                            <span class="material-symbols-outlined text-[22px]">location_on</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Ubicación</p>
+                            <p class="text-[15px] font-bold text-gray-900 leading-tight">Monteros, Tucumán</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Matrícula -->
+                    <div
+                        class="snap-center shrink-0 w-[200px] h-[130px] flex flex-col justify-between p-5 rounded-[20px] bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow select-none">
+                        <div
+                            class="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center text-brand-primary">
+                            <span class="material-symbols-outlined text-[22px]">badge</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Matrícula
+                                Nacional
+                            </p>
+                            <p class="text-[15px] font-bold text-gray-900 leading-tight">M.N. 23.903.785</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Contacto -->
+                    <div
+                        class="snap-center shrink-0 w-[200px] h-[130px] flex flex-col justify-between p-5 rounded-[20px] bg-white border border-gray-100 shadow-sm hover:shadow-md transition-shadow select-none">
+                        <div
+                            class="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center text-brand-primary">
+                            <span class="material-symbols-outlined text-[22px]">call</span>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Teléfono</p>
+                            <p class="text-[15px] font-bold text-gray-900 leading-tight">03865-447836</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination Dots -->
+                <div id="stats-dots" class="dots-container"></div>
+            </div>
+        </section>
+
+        <!-- Sobre Mí -->
+        <section class="px-5 py-10 reveal" id="sobre-mi">
+            <h3 class="text-[26px] font-bold text-gray-900 mb-5 relative inline-block font-serif">
+                Sobre Mí
+                <span class="absolute -bottom-1 left-0 w-1/2 h-[3px] bg-brand-primary rounded-full"></span>
+            </h3>
+
+            <div class="bg-brand-light rounded-2xl p-6 border border-brand-primary/10">
+                <p class="text-gray-700 leading-[1.7] text-[15px] mb-5">
+                    Soy la <span class="font-bold text-gray-900">Dra. Carina Giuri</span>. Médica egresada de la
+                    Universidad Favaloro con Diploma de Honor. Mi enfoque integra mi sólida formación como cirujana
+                    general y flebóloga con la delicadeza de la medicina estética.
+                </p>
+
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span
+                        class="px-3 py-1.5 bg-white rounded-lg text-[11px] font-bold text-brand-primary shadow-sm border border-gray-100">Cirujana
+                        General</span>
+                    <span
+                        class="px-3 py-1.5 bg-white rounded-lg text-[11px] font-bold text-brand-primary shadow-sm border border-gray-100">Flebóloga
+                        UCA</span>
+                    <span
+                        class="px-3 py-1.5 bg-white rounded-lg text-[11px] font-bold text-brand-primary shadow-sm border border-gray-100">Estética
+                        Avanzada</span>
+                </div>
+
+                <button onclick="openModal('cv-modal')"
+                    class="w-full flex items-center justify-center gap-2 bg-white border border-brand-primary text-brand-primary font-semibold py-3 rounded-xl text-sm hover:bg-brand-primary hover:text-white transition-all shadow-sm">
+                    Ver Trayectoria Completa
+                    <span class="material-symbols-outlined text-lg">description</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Tratamientos Grid -->
+        <section class="px-5 pb-10 reveal" id="tratamientos">
+            <div class="flex items-end justify-between mb-6">
+                <h3 class="text-[26px] font-bold text-gray-900 relative inline-block font-serif">
+                    Tratamientos
+                    <span class="absolute -bottom-1 left-0 w-1/2 h-[3px] bg-brand-primary rounded-full"></span>
+                </h3>
+                <a href="#book" class="text-[13px] font-bold text-brand-primary hover:text-brand-secondary">Ver
+                    todos</a>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <!-- Flebología -->
+                <div onclick="openTreatmentModal('flebologia')"
+                    class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all cursor-pointer group">
+                    <div
+                        class="w-9 h-9 rounded-full bg-brand-light flex items-center justify-center text-brand-primary mb-3 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-[20px]">health_and_safety</span>
+                    </div>
+                    <h4 class="font-bold text-[14px] text-gray-900 mb-1">Flebología</h4>
+                    <p class="text-[11px] text-gray-500 mb-3 leading-tight">Enfermedad Venosa y Linfática</p>
+                    <div class="flex items-center justify-between">
+                        <span
+                            class="text-[10px] font-semibold bg-gray-50 px-2 py-1 rounded text-gray-500">Consulta</span>
+                        <span
+                            class="material-symbols-outlined text-gray-300 text-[16px] group-hover:text-brand-primary group-hover:translate-x-1 transition-all">arrow_forward</span>
+                    </div>
+                </div>
+
+                <!-- Inyectables -->
+                <div onclick="openTreatmentModal('inyectables')"
+                    class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all cursor-pointer group">
+                    <div
+                        class="w-9 h-9 rounded-full bg-[#FFF8E1] flex items-center justify-center text-brand-gold mb-3 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-[20px]">vaccines</span>
+                    </div>
+                    <h4 class="font-bold text-[14px] text-gray-900 mb-1">Inyectables</h4>
+                    <p class="text-[11px] text-gray-500 mb-3 leading-tight">Botox, Rellenos, Enzimas</p>
+                    <div class="flex items-center justify-between">
+                        <span
+                            class="text-[10px] font-semibold bg-gray-50 px-2 py-1 rounded text-gray-500">Personalizado</span>
+                        <span
+                            class="material-symbols-outlined text-gray-300 text-[16px] group-hover:text-brand-gold group-hover:translate-x-1 transition-all">arrow_forward</span>
+                    </div>
+                </div>
+
+                <!-- Bioestimulación -->
+                <div onclick="openTreatmentModal('bioestimulacion')"
+                    class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all cursor-pointer group">
+                    <div
+                        class="w-9 h-9 rounded-full bg-[#FFF8E1] flex items-center justify-center text-brand-gold mb-3 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-[20px]">spa</span>
+                    </div>
+                    <h4 class="font-bold text-[14px] text-gray-900 mb-1">Bioestimulación</h4>
+                    <p class="text-[11px] text-gray-500 mb-3 leading-tight">Profhilo, HarmonyCa, Hilos</p>
+                    <div class="flex items-center justify-between">
+                        <span
+                            class="text-[10px] font-semibold bg-gray-50 px-2 py-1 rounded text-gray-500">Anti-age</span>
+                        <span
+                            class="material-symbols-outlined text-gray-300 text-[16px] group-hover:text-brand-gold group-hover:translate-x-1 transition-all">arrow_forward</span>
+                    </div>
+                </div>
+
+                <!-- Pellets -->
+                <div onclick="openTreatmentModal('pellets')"
+                    class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all cursor-pointer group">
+                    <div
+                        class="w-9 h-9 rounded-full bg-[#FFF8E1] flex items-center justify-center text-brand-gold mb-3 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-[20px]">medication</span>
+                    </div>
+                    <h4 class="font-bold text-[14px] text-gray-900 mb-1">Pellets</h4>
+                    <p class="text-[11px] text-gray-500 mb-3 leading-tight">Reemplazo Hormonal</p>
+                    <div class="flex items-center justify-between">
+                        <span
+                            class="text-[10px] font-semibold bg-gray-50 px-2 py-1 rounded text-gray-500">Bienestar</span>
+                        <span
+                            class="material-symbols-outlined text-gray-300 text-[16px] group-hover:text-brand-gold group-hover:translate-x-1 transition-all">arrow_forward</span>
+                    </div>
+                </div>
+
+                <!-- Rinomodelación -->
+                <div onclick="openTreatmentModal('rinomodelacion')"
+                    class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all cursor-pointer group">
+                    <div
+                        class="w-9 h-9 rounded-full bg-[#FFF8E1] flex items-center justify-center text-brand-gold mb-3 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-[20px]">face_3</span>
+                    </div>
+                    <h4 class="font-bold text-[14px] text-gray-900 mb-1">Rinomodelación</h4>
+                    <p class="text-[11px] text-gray-500 mb-3 leading-tight">Sin cirugía</p>
+                    <div class="flex items-center justify-between">
+                        <span
+                            class="text-[10px] font-semibold bg-gray-50 px-2 py-1 rounded text-gray-500">Estética</span>
+                        <span
+                            class="material-symbols-outlined text-gray-300 text-[16px] group-hover:text-brand-gold group-hover:translate-x-1 transition-all">arrow_forward</span>
+                    </div>
+                </div>
+
+                <!-- Medicina Anti-Age -->
+                <div onclick="openTreatmentModal('antiage')"
+                    class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all cursor-pointer group">
+                    <div
+                        class="w-9 h-9 rounded-full bg-brand-light flex items-center justify-center text-brand-primary mb-3 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+                    </div>
+                    <h4 class="font-bold text-[14px] text-gray-900 mb-1">Medicina Anti-Age</h4>
+                    <p class="text-[11px] text-gray-500 mb-3 leading-tight">Nutrigenómica Orthomolecular</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-semibold bg-gray-50 px-2 py-1 rounded text-gray-500">Salud</span>
+                        <span
+                            class="material-symbols-outlined text-gray-300 text-[16px] group-hover:text-brand-primary group-hover:translate-x-1 transition-all">arrow_forward</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resultados (Before & After) -->
+        <section class="px-5 pb-12 reveal" id="resultados">
+            <h3 class="text-[26px] font-bold text-gray-900 mb-6 relative inline-block font-serif">
+                Resultados Reales
+                <span class="absolute -bottom-1 left-0 w-1/2 h-[3px] bg-brand-primary rounded-full"></span>
+            </h3>
+
+            <p class="text-[14px] text-gray-600 mb-6 leading-relaxed">
+                Nuestra mayor satisfacción es ver el cambio positivo en la calidad de vida de nuestros pacientes.
+            </p>
+
+            <div class="comparison-slider" id="varices-slider">
+                <!-- After Image (Background) -->
+                <img src="https://media.istockphoto.com/id/1473203340/es/foto/rostro-belleza-y-satisfacci%C3%B3n-con-una-mujer-negra-modelo-en-estudio-sobre-fondo-gris-para.jpg?s=612x612&w=0&k=20&c=VhYaDYJQGtfG7Y-70OKnQu6iGW3XsbHTzAtucBtgHqk="
+                    alt="Pre Tratamiento" />
+
+                <!-- Before Image (Resize) -->
+                <div class="resize">
+                    <img src="https://josecortes.com/wp-content/uploads/2025/03/tratamiento-de-botox.png"
+                        alt="Post Tratamiento" />
+
+                </div>
+
+                <!-- Handle -->
+                <div class="handle"></div>
+
+                <!-- Labels -->
+                <div id="label-before"
+                    class="absolute bottom-4 left-4 z-10 bg-black px-3 py-1 rounded-full text-[10px] text-white font-bold uppercase tracking-widest border border-white/20 transition-all duration-300">
+                    Antes</div>
+                <div id="label-after"
+                    class="absolute bottom-4 right-4 z-10 bg-brand-primary px-3 py-1 rounded-full text-[10px] text-white font-bold uppercase tracking-widest border border-white/20 transition-all duration-300">
+                    Después</div>
+            </div>
+
+            <p class="text-[11px] text-gray-400 mt-4 italic text-center italic">Representación de resultados típicos en
+                tratamientos de escleroterapia.</p>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="px-5 pb-12 reveal" id="faq">
+            <h3 class="text-[26px] font-bold text-gray-900 mb-6 relative inline-block font-serif">
+                Preguntas Frecuentes
+                <span class="absolute -bottom-1 left-0 w-1/2 h-[3px] bg-brand-primary rounded-full"></span>
+            </h3>
+            <div class="flex flex-col gap-3">
+                <details class="group bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm">
+                    <summary class="flex items-center justify-between p-4 cursor-pointer list-none select-none">
+                        <span class="font-semibold text-gray-800 text-[15px]">¿Aceptan obras sociales?</span>
+                        <span
+                            class="material-symbols-outlined text-brand-primary/40 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <div class="px-4 pb-4 text-[14px] text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
+                        Para consultas de flebología, por favor consultar cobertura específica. Los tratamientos
+                        estéticos son particulares, pero se puede emitir factura para reintegro si su plan lo permite.
+                    </div>
+                </details>
+                <details class="group bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm">
+                    <summary class="flex items-center justify-between p-4 cursor-pointer list-none select-none">
+                        <span class="font-semibold text-gray-800 text-[15px]">¿Cómo es la primera consulta?</span>
+                        <span
+                            class="material-symbols-outlined text-brand-primary/40 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <div class="px-4 pb-4 text-[14px] text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
+                        Realizamos una evaluación clínica completa, ya sea vascular o estética, para diseñar un plan de
+                        tratamiento personalizado y seguro.
+                    </div>
+                </details>
+                <details class="group bg-white rounded-xl border border-gray-100 overflow-hidden shadow-sm">
+                    <summary class="flex items-center justify-between p-4 cursor-pointer list-none select-none">
+                        <span class="font-semibold text-gray-800 text-[15px]">¿Dónde atienden?</span>
+                        <span
+                            class="material-symbols-outlined text-brand-primary/40 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <div class="px-4 pb-4 text-[14px] text-gray-600 leading-relaxed border-t border-gray-50 pt-3">
+                        Estamos ubicados en Constitución 332, Monteros, Tucumán. Se requiere cita previa.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- Testimonios -->
+        <section class="px-5 pb-12 reveal" id="testimonios">
+            <h3 class="text-[26px] font-bold text-gray-900 mb-6 relative inline-block font-serif">
+                Experiencias
+                <span class="absolute -bottom-1 left-0 w-1/2 h-[3px] bg-brand-primary rounded-full"></span>
+            </h3>
+
+            <div class="relative group/testimonials">
+                <!-- Navigation Arrows -->
+                <button onclick="scrollSlider('testimonials-slider', 'prev')"
+                    class="slider-btn prev opacity-0 group-hover/testimonials:opacity-100">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button onclick="scrollSlider('testimonials-slider', 'next')"
+                    class="slider-btn next opacity-0 group-hover/testimonials:opacity-100">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+
+                <div id="testimonials-slider"
+                    class="flex overflow-x-auto hide-scrollbar gap-4 snap-x snap-mandatory cursor-grab active:cursor-grabbing">
+                    <!-- Testimonio 1 -->
+                    <div class="testimonial-card snap-center shrink-0 w-[85%] sm:w-[45%] md:w-[30%]">
+                        <div class="flex text-yellow-400 mb-4">
+                            <span class="material-symbols-outlined fill-1">star</span>
+                            <span class="material-symbols-outlined fill-1">star</span>
+                            <span class="material-symbols-outlined fill-1">star</span>
+                            <span class="material-symbols-outlined fill-1">star</span>
+                            <span class="material-symbols-outlined fill-1">star</span>
+                        </div>
+                        <p class="text-gray-700 text-[14px] leading-relaxed mb-6 italic">
+                            "Excelente profesional. Me realicé un tratamiento de várices y los resultados fueron
+                            increíbles.
+                            La atención de la Dra. es impecable y muy cálida."
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center font-bold text-brand-primary text-xs">
+                                M.G</div>
+                            <div>
+                                <p class="font-bold text-gray-900 text-sm italic font-serif">María García</p>
+                                <p class="text-[11px] text-gray-400 uppercase tracking-tighter">Tratamiento Flebológico
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonio 2 -->
+                    <div class="testimonial-card snap-center shrink-0 w-[85%] sm:w-[45%] md:w-[30%]">
+                        <div class="flex text-yellow-400 mb-4">
+                            <span class="material-symbols-outlined fill-1">star</span>
+                            <span class="material-symbols-outlined fill-1">star</span>
+                            <span class="material-symbols-outlined fill-1">star</span>
+                            <span class="material-symbols-outlined fill-1">star</span>
+                            <span class="material-symbols-outlined fill-1">star</span>
+                        </div>
+                        <p class="text-gray-700 text-[14px] leading-relaxed mb-6 italic">
+                            "Súper conforme con el botox y los rellenos. Resultados súper naturales, que era lo que
+                            buscaba.
+                            Me sentí muy segura en sus manos."
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center font-bold text-brand-primary text-xs">
+                                A.P</div>
+                            <div>
+                                <p class="font-bold text-gray-900 text-sm italic font-serif">Ana Pérez</p>
+                                <p class="text-[11px] text-gray-400 uppercase tracking-tighter">Estética Facial</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination Dots -->
+                <div id="testimonials-dots" class="dots-container"></div>
+            </div>
+        </section>
+
+        <!-- Form / CTA Block -->
+        <section class="px-5 pb-12 reveal" id="book">
+            <div class="bg-white rounded-2xl shadow-xl p-6 border border-gray-50 relative overflow-hidden">
+                <!-- Decorative background elements -->
+                <div
+                    class="absolute top-0 right-0 w-32 h-32 bg-brand-light rounded-full blur-3xl -z-10 translate-x-10 -translate-y-10">
+                </div>
+
+                <div class="flex items-center gap-4 mb-6">
+                    <div
+                        class="w-12 h-12 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary shrink-0">
+                        <svg fill="currentColor" height="28" viewBox="0 0 24 24" width="28">
+                            <path
+                                d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.001.574 1.901.835 3.013.835 3.18 0 5.768-2.587 5.768-5.766.001-3.182-2.585-5.769-5.766-5.769l-.209.001zm0-2.172c4.379 0 7.94 3.561 7.94 7.94 0 4.38-3.561 7.941-7.94 7.941-1.353 0-2.673-.352-3.836-.973l-4.195 1.1 1.123-4.08c-1.017-1.488-1.556-3.136-1.557-4.888 0-4.379 3.562-7.94 7.94-7.94h.525zm-.214 10.158c.285.142 1.688.835 1.974.982.285.148.474.218.544.339.068.12.068.683-.198 1.433-.264.75-1.522.685-2.094.613-.255-.032-.577-.123-1.076-.341-2.138-.937-3.64-3.178-3.748-3.32-.108-.142-.897-1.192-.897-2.273 0-1.081.562-1.613.763-1.83.202-.218.54-.271.72-.271.18 0 .36.003.521.008.169.005.412-.061.64.485.244.582.835 2.029.907 2.177.072.147.12.321.025.511-.097.192-.144.312-.285.479-.142.169-.297.375-.425.503-.141.142-.292.302-.132.576.162.276.716 1.182 1.536 1.912.86.767 1.587 1.017 1.815 1.13z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-lg">Consulta Rápida</h4>
+                        <p class="text-xs text-gray-500">Inicia un chat directo por WhatsApp</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1.5">Tu
+                            Nombre</label>
+                        <input
+                            class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all"
+                            placeholder="Maria Perez" type="text" />
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wide mb-1.5">Motivo
+                            de consulta</label>
+                        <select
+                            class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-brand-primary focus:border-transparent outline-none transition-all text-gray-700">
+                            <option>Consulta General</option>
+                            <option>Flebología / Varices</option>
+                            <option>Estética Facial (Botox/Rellenos)</option>
+                            <option>Bioestimulación / Anti-age</option>
+                            <option>Pellets Hormonales</option>
+                        </select>
+                    </div>
+                    <a href="javascript:void(0)" onclick="handleFormSubmit()" id="submit-btn"
+                        class="w-full bg-brand-primary hover:bg-brand-secondary text-white font-bold py-3.5 rounded-xl shadow-lg shadow-brand-primary/20 transition-all active:scale-[0.98] mt-2 flex items-center justify-center gap-2">
+                        <span>Enviar Mensaje</span>
+                        <span class="material-symbols-outlined text-[20px]">send</span>
+                    </a>
+                </div>
+
+                <!-- Success Message -->
+                <div id="success-msg"
+                    class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm z-20 flex flex-col items-center justify-center text-center p-6 transition-all duration-500 opacity-0 scale-95">
+                    <div
+                        class="w-16 h-16 bg-brand-primary/10 text-brand-primary rounded-full flex items-center justify-center mb-4">
+                        <span class="material-symbols-outlined text-[32px]">check_circle</span>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 font-serif">¡Mensaje Enviado!</h4>
+                    <p class="text-sm text-gray-500 mb-6">En instantes nos pondremos en contacto con usted vía WhatsApp.
+                    </p>
+                    <button onclick="resetForm()"
+                        class="text-brand-primary font-bold text-xs uppercase tracking-widest border-b border-brand-primary">Enviar
+                        otro mensaje</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-[#F8F9FA] pt-12 pb-24 px-6 border-t border-gray-100">
+            <div class="flex flex-col gap-8 text-center">
+                <div>
+                    <h2 class="text-lg font-bold text-gray-900 mb-2">Dra. Carina Giuri</h2>
+                    <p class="text-gray-500 text-sm">Medicina Estética, Flebología y Cirugía General.</p>
+                </div>
+
+                <div class="flex gap-4 justify-center">
+                    <a href="https://wa.me/5493865447836"
+                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all shadow-sm">
+                        <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.069-4.85.069-3.204 0-3.584-.012-4.849-.069-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="mailto:carigiuri@gmail.com"
+                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all shadow-sm">
+                        <span class="material-symbols-outlined text-[20px]">mail</span>
+                    </a>
+                    <a href="https://instagram.com/Dra.carinagiuri" target="_blank"
+                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all shadow-sm">
+                        <svg fill="currentColor" height="18" viewBox="0 0 24 24" width="18">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.069-4.85.069-3.204 0-3.584-.012-4.849-.069-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="https://maps.google.com/?q=Constitución+332,Monteros,Tucumán"
+                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all shadow-sm">
+                        <span class="material-symbols-outlined text-[20px]">location_on</span>
+                    </a>
+                </div>
+
+                <div class="h-px bg-gray-200 w-full max-w-[200px] mx-auto"></div>
+
+                <div class="space-y-3">
+                    <p class="text-[11px] text-gray-400 leading-normal max-w-xs mx-auto">
+                        <strong>Aviso Médico:</strong> La información en este sitio es solo para fines educativos y no
+                        sustituye el consejo médico. Ante una emergencia, contacte al 107.
+                    </p>
+                    <p class="text-[11px] text-gray-400">
+                        © 2024 Dra. Carina Giuri.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Floating WA Button (Mobile only) -->
+        <div class="fixed bottom-6 right-6 z-40 sm:hidden">
+            <a href="https://wa.me/5493865447836"
+                class="flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-lg shadow-green-500/30 text-white hover:scale-110 transition-transform">
+                <svg fill="currentColor" height="30" viewBox="0 0 24 24" width="30">
+                    <path
+                        d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.001.574 1.901.835 3.013.835 3.18 0 5.768-2.587 5.768-5.766.001-3.182-2.585-5.769-5.766-5.769l-.209.001zm0-2.172c4.379 0 7.94 3.561 7.94 7.94 0 4.38-3.561 7.941-7.94 7.941-1.353 0-2.673-.352-3.836-.973l-4.195 1.1 1.123-4.08c-1.017-1.488-1.556-3.136-1.557-4.888 0-4.379 3.562-7.94 7.94-7.94h.525zm-.214 10.158c.285.142 1.688.835 1.974.982.285.148.474.218.544.339.068.12.068.683-.198 1.433-.264.75-1.522.685-2.094.613-.255-.032-.577-.123-1.076-.341-2.138-.937-3.64-3.178-3.748-3.32-.108-.142-.897-1.192-.897-2.273 0-1.081.562-1.613.763-1.83.202-.218.54-.271.72-.271.18 0 .36.003.521.008.169.005.412-.061.64.485.244.582.835 2.029.907 2.177.072.147.12.321.025.511-.097.192-.144.312-.285.479-.142.169-.297.375-.425.503-.141.142-.292.302-.132.576.162.276.716 1.182 1.536 1.912.86.767 1.587 1.017 1.815 1.13z">
+                    </path>
+                </svg>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="modal fixed inset-0 z-[70] flex justify-start">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal('mobile-menu')">
+        </div>
+
+        <!-- Drawer Content (Slide from Left) -->
+        <div class="drawer-content bg-white w-[280px] h-full shadow-2xl flex flex-col relative z-10 overflow-hidden">
+            <!-- Drawer Header -->
+            <div class="p-6 border-b border-gray-100 bg-brand-light">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=100"
+                            alt="Dra. Carina Giuri" class="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 leading-tight">Dra. Carina Giuri</h3>
+                        <p class="text-xs text-brand-primary font-semibold uppercase tracking-wider">Médica</p>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <a href="https://wa.me/5493865447836"
+                        class="flex-1 bg-[#25D366] text-white text-[11px] font-bold py-1.5 rounded-md text-center shadow-sm">WhatsApp</a>
+                    <a href="mailto:carigiuri@gmail.com"
+                        class="flex-1 bg-white border border-gray-200 text-gray-600 text-[11px] font-bold py-1.5 rounded-md text-center shadow-sm">Email</a>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="flex-1 overflow-y-auto p-4 space-y-1">
+                <a href="#inicio" onclick="closeModal('mobile-menu')"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-xl transition-colors font-medium text-sm">
+                    <span class="material-symbols-outlined text-gray-400">home</span>
+                    Inicio
+                </a>
+                <a href="#sobre-mi" onclick="closeModal('mobile-menu')"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-xl transition-colors font-medium text-sm">
+                    <span class="material-symbols-outlined text-gray-400">person</span>
+                    Sobre Mí
+                </a>
+                <a href="#tratamientos" onclick="closeModal('mobile-menu')"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-xl transition-colors font-medium text-sm">
+                    <span class="material-symbols-outlined text-gray-400">healing</span>
+                    Tratamientos
+                </a>
+                <a href="#faq" onclick="closeModal('mobile-menu')"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-xl transition-colors font-medium text-sm">
+                    <span class="material-symbols-outlined text-gray-400">help</span>
+                    Preguntas Frecuentes
+                </a>
+                <a href="#book" onclick="closeModal('mobile-menu')"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-xl transition-colors font-medium text-sm">
+                    <span class="material-symbols-outlined text-gray-400">calendar_month</span>
+                    Reservar Turno
+                </a>
+
+                <div class="h-px bg-gray-100 my-2 mx-4"></div>
+
+                <button onclick="closeModal('mobile-menu'); openModal('cv-modal')"
+                    class="w-full flex items-center gap-3 px-4 py-3 text-brand-primary hover:bg-brand-light rounded-xl transition-colors font-bold text-sm">
+                    <span class="material-symbols-outlined">description</span>
+                    Ver Trayectoria (CV)
+                </button>
+            </nav>
+
+            <!-- Drawer Footer -->
+            <div class="p-4 border-t border-gray-100 text-center">
+                <p class="text-[10px] text-gray-400">© 2024 Dra. Carina Giuri</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CV Modal -->
+    <div id="cv-modal" class="modal fixed inset-0 z-[60] flex items-end sm:items-center justify-center sm:p-4">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal('cv-modal')">
+        </div>
+
+        <!-- Content -->
+        <div
+            class="modal-content bg-white w-full max-w-2xl max-h-[90vh] sm:rounded-2xl rounded-t-2xl shadow-2xl flex flex-col relative z-10 overflow-hidden">
+            <!-- Header -->
+            <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-white shrink-0">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900">Trayectoria Profesional</h3>
+                    <p class="text-xs text-brand-primary font-semibold uppercase tracking-wider">Dra. Carina Giuri</p>
+                </div>
+                <button onclick="closeModal('cv-modal')"
+                    class="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex overflow-x-auto hide-scrollbar border-b border-gray-100 shrink-0">
+                <button onclick="switchTab('formacion')" id="tab-formacion"
+                    class="tab-btn active px-5 py-3 text-sm text-gray-500 font-medium whitespace-nowrap hover:text-brand-primary transition-colors">Títulos</button>
+                <button onclick="switchTab('experiencia')" id="tab-experiencia"
+                    class="tab-btn px-5 py-3 text-sm text-gray-500 font-medium whitespace-nowrap hover:text-brand-primary transition-colors">Experiencia</button>
+                <button onclick="switchTab('cursos')" id="tab-cursos"
+                    class="tab-btn px-5 py-3 text-sm text-gray-500 font-medium whitespace-nowrap hover:text-brand-primary transition-colors">Cursos
+                    y Congresos</button>
+            </div>
+
+            <!-- Body (Scrollable) -->
+            <div class="overflow-y-auto p-6 space-y-6 bg-gray-50/50">
+                <!-- Tab: Formación -->
+                <div id="content-formacion" class="tab-content active space-y-6">
+                    <div class="space-y-4">
+                        <h4
+                            class="text-sm font-bold text-gray-900 uppercase tracking-wide border-b border-brand-primary/20 pb-2">
+                            Títulos Universitarios</h4>
+                        <ul class="space-y-4">
+                            <li class="pl-4 border-l-2 border-brand-primary">
+                                <p class="font-bold text-gray-900">Médica</p>
+                                <p class="text-sm text-gray-600">Universidad Favaloro (1991–1998)</p>
+                                <span
+                                    class="inline-block mt-1 px-2 py-0.5 bg-yellow-100 text-yellow-800 text-[10px] font-bold rounded">Diploma
+                                    de Honor (1998)</span>
+                            </li>
+                            <li class="pl-4 border-l-2 border-brand-primary">
+                                <p class="font-bold text-gray-900">Especialista en Cirugía General</p>
+                                <p class="text-sm text-gray-600">Asociación Argentina de Cirugía (2001–2002)</p>
+                                <p class="text-sm text-gray-600 mt-1">Ministerio de Salud - Policlínico Bancario POBA
+                                    (1999–2002)</p>
+                                <p class="text-sm text-gray-600 mt-1">UBA - Facultad de Medicina (2003–2005)</p>
+                            </li>
+                            <li class="pl-4 border-l-2 border-brand-primary">
+                                <p class="font-bold text-gray-900">Especialista en Flebología y Linfología</p>
+                                <p class="text-sm text-gray-600">Universidad Católica Argentina (UCA) (2014–2015)</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4
+                            class="text-sm font-bold text-gray-900 uppercase tracking-wide border-b border-brand-primary/20 pb-2">
+                            Posgrados y Diplomaturas</h4>
+                        <ul class="space-y-3 text-sm text-gray-700">
+                            <li>• <strong>Posgrado en Medicina Estética y Antiaging (2021-2023)</strong><br /><span
+                                    class="text-gray-500">Asociación Médica Argentina - Dir. Dr. Raúl Banegas</span>
+                            </li>
+                            <li>• <strong>Diplomatura en Estética e Inmuno-estética (2017-2019)</strong><br /><span
+                                    class="text-gray-500">Universidad Nacional de Tucumán</span></li>
+                            <li>• <strong>Gestión y Dirección en Sistemas de Salud (2008-2009)</strong><br /><span
+                                    class="text-gray-500">Universidad San Pablo T</span></li>
+                            <li>• <strong>Hands-on Anatomy Training (2023)</strong><br /><span
+                                    class="text-gray-500">ICLO Verona, Italia</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tab: Experiencia -->
+                <div id="content-experiencia" class="tab-content space-y-6">
+                    <h4
+                        class="text-sm font-bold text-gray-900 uppercase tracking-wide border-b border-brand-primary/20 pb-2">
+                        Actividad Laboral Actual</h4>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-brand-primary mt-0.5">medical_services</span>
+                            <div>
+                                <p class="font-bold text-gray-900">Consultorio Privado</p>
+                                <p class="text-sm text-gray-600">Medicina Estética y Flebología, Monteros</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-brand-primary mt-0.5">local_hospital</span>
+                            <div>
+                                <p class="font-bold text-gray-900">Sanatorio Nuestra Señora del Rosario</p>
+                                <p class="text-sm text-gray-600">Cirugía General y Flebología</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-brand-primary mt-0.5">group</span>
+                            <div>
+                                <p class="font-bold text-gray-900">Staff Médico</p>
+                                <p class="text-sm text-gray-600">Dr. Banegas (Médica Inyectora)</p>
+                                <p class="text-sm text-gray-600">Centro Médico Estético BLER (Flebóloga)</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-outlined text-brand-primary mt-0.5">emergency</span>
+                            <div>
+                                <p class="font-bold text-gray-900">Hospital La Madrid</p>
+                                <p class="text-sm text-gray-600">Médica Cirujana (Junio 2023 - Actualidad)</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="pt-4 border-t border-gray-200">
+                        <p class="text-xs text-gray-500 font-semibold mb-2">ANTECEDENTES DESTACADOS</p>
+                        <p class="text-sm text-gray-600">Ex Jefa del Centro Quirúrgico del Hospital Regional de
+                            Concepción (2011–2023).</p>
+                    </div>
+                </div>
+
+                <!-- Tab: Cursos -->
+                <div id="content-cursos" class="tab-content space-y-6">
+                    <p class="text-xs text-gray-500 italic mb-4">Selección de capacitaciones más recientes</p>
+
+                    <div class="space-y-4">
+                        <h4 class="text-sm font-bold text-gray-900 border-l-4 border-brand-primary pl-2">2023 - 2024
+                        </h4>
+                        <ul class="text-sm space-y-2 text-gray-700">
+                            <li>• Seminario Complicaciones en Medicina Estética (Univ. Maimónides, Ago 2024)</li>
+                            <li>• Galderma Regional Trip (Buenos Aires, Nov 2023)</li>
+                            <li>• HarmonyCa™ Teoría y Aplicación (Oct 2023)</li>
+                            <li>• Taller de Bioremodelación y Rinomodelación (Ago 2023)</li>
+                            <li>• Terapia de Reemplazo Hormonal (Dr. Lamagni, Jul 2023)</li>
+                            <li>• BAAS Buenos Aires (Abr 2023)</li>
+                            <li>• Hands-on Training Anatomía (Verona, Italia, Mar 2023)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Actions -->
+            <div class="p-4 border-t border-gray-100 bg-white shrink-0 flex justify-end">
+                <button onclick="closeModal('cv-modal')"
+                    class="text-sm font-bold text-gray-500 hover:text-gray-800 px-4 py-2 transition-colors">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Treatment Info Modal -->
+    <div id="treatment-modal" class="modal fixed inset-0 z-[60] flex items-end sm:items-center justify-center sm:p-4">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+            onclick="closeModal('treatment-modal')"></div>
+
+        <!-- Content -->
+        <div
+            class="modal-content bg-white w-full max-w-lg sm:rounded-2xl rounded-t-2xl shadow-2xl flex flex-col relative z-10 overflow-hidden max-h-[90vh]">
+            <div class="relative bg-brand-primary/10 p-6 pb-8">
+                <button onclick="closeModal('treatment-modal')"
+                    class="absolute top-4 right-4 p-2 bg-white/50 hover:bg-white rounded-full transition-colors text-gray-600">
+                    <span class="material-symbols-outlined text-xl">close</span>
+                </button>
+                <div
+                    class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-brand-primary shadow-sm mb-4">
+                    <span id="t-icon" class="material-symbols-outlined text-2xl">healing</span>
+                </div>
+                <h3 id="t-title" class="text-2xl font-bold text-gray-900">Nombre Tratamiento</h3>
+                <p id="t-subtitle" class="text-brand-primary font-medium text-sm mt-1">Subtítulo descriptivo</p>
+            </div>
+
+            <div class="p-6 overflow-y-auto space-y-6">
+                <div>
+                    <h4 class="text-sm font-bold text-gray-900 uppercase tracking-wide mb-2">¿En qué consiste?</h4>
+                    <p id="t-desc" class="text-gray-600 text-[15px] leading-relaxed">Descripción detallada del
+                        tratamiento.</p>
+                </div>
+
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                    <h4 class="text-sm font-bold text-gray-900 uppercase tracking-wide mb-2 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-brand-primary text-lg">person</span>
+                        Recomendado para
+                    </h4>
+                    <p id="t-target" class="text-gray-600 text-sm leading-relaxed">Perfil del paciente ideal.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-gray-900 uppercase tracking-wide mb-2">Beneficios</h4>
+                    <ul id="t-benefits" class="custom-list text-gray-600 text-sm space-y-2">
+                        <!-- Benefits populated by JS -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-gray-100 bg-white shrink-0">
+                <a href="#book" onclick="closeModal('treatment-modal')"
+                    class="w-full flex items-center justify-center gap-2 bg-brand-primary text-white h-[50px] rounded-xl font-bold text-[15px] shadow-lg shadow-brand-primary/20 hover:bg-brand-secondary transition-all active:scale-[0.98]">
+                    Pedir Turno para este Tratamiento
+                    <span class="material-symbols-outlined">calendar_month</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script to handle Modals & Slider Drag -->
+    <script>
+        // Modal Logic
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+            document.getElementById('content-' + tabName).classList.add('active');
+        }
+
+        // Treatment Data
+        const treatmentData = {
+            'flebologia': {
+                title: 'Flebología',
+                subtitle: 'Salud Vascular Integral',
+                icon: 'health_and_safety',
+                desc: 'Abordamos la patología venosa desde un enfoque médico y estético. Realizamos diagnósticos precisos mediante ecodoppler y tratamientos mínimamente invasivos como escleroterapia (inyecciones para "secar" arañitas), láser transdérmico o microcirugía ambulatoria, según la necesidad de cada paciente.',
+                target: 'Personas que sufren de pesadez en las piernas, hinchazón, dolor, calambres nocturnos o que presentan várices y arañitas vasculares visibles que desean eliminar por motivos estéticos o de salud.',
+                benefits: [
+                    'Eliminación de dolor y pesadez en las piernas.',
+                    'Mejora estética inmediata de várices y arañitas.',
+                    'Prevención de complicaciones vasculares futuras.',
+                    'Recuperación rápida sin necesidad de reposo prolongado.'
+                ]
+            },
+            'inyectables': {
+                title: 'Inyectables Faciales',
+                subtitle: 'Botox y Ácido Hialurónico',
+                icon: 'vaccines',
+                desc: 'Utilizamos Toxina Botulínica (Botox) para relajar los músculos que causan arrugas de expresión y Ácido Hialurónico para reponer volúmenes perdidos, hidratar profundamente y perfilar rasgos. Todo realizado con productos premium y técnicas avanzadas para asegurar naturalidad.',
+                target: 'Hombres y mujeres que desean suavizar arrugas en frente y patas de gallo, dar volumen a labios, definir pómulos o simplemente refrescar su apariencia sin pasar por quirófano.',
+                benefits: [
+                    'Rostro más descansado y jovial al instante.',
+                    'Atenuación visible de arrugas dinámicas.',
+                    'Hidratación profunda y mejora de la calidad de la piel.',
+                    'Resultados naturales que respetan tu expresión.'
+                ]
+            },
+            'bioestimulacion': {
+                title: 'Bioestimulación',
+                subtitle: 'Regeneración de Colágeno',
+                icon: 'spa',
+                desc: 'Tratamientos inyectables con productos innovadores como Profhilo, HarmonyCa o Radiesse que actúan biológicamente estimulando a tus propias células para que produzcan nuevo colágeno y elastina. No solo rellenan, sino que reparan la estructura de la piel.',
+                target: 'Pieles con signos de flacidez leve a moderada, falta de luminosidad, textura irregular o "papel de fumar". Ideal como prevención a partir de los 30 años o como reparación en pieles maduras.',
+                benefits: [
+                    'Efecto tensor (lifting) natural y progresivo.',
+                    'Mejora radical en la firmeza y elasticidad de la piel.',
+                    'Luminosidad duradera e hidratación profunda.',
+                    'Previene el descolgamiento facial a futuro.'
+                ]
+            },
+            'pellets': {
+                title: 'Pellets Hormonales',
+                subtitle: 'Chip de la Juventud',
+                icon: 'medication',
+                desc: 'Terapia de Reemplazo Hormonal Bioidéntica. Consiste en la inserción subcutánea de un pequeño implante (del tamaño de un grano de arroz) que libera hormonas naturales de forma constante y fisiológica, equilibrando los niveles que decaen con la edad.',
+                target: 'Mujeres en perimenopausia/menopausia y hombres en andropausia que experimentan fatiga crónica, baja libido, sofocos, insomnio, cambios de humor o dificultad para perder peso.',
+                benefits: [
+                    'Recuperación de la energía y vitalidad diaria.',
+                    'Aumento del deseo y rendimiento sexual.',
+                    'Mejora la calidad del sueño y el estado de ánimo.',
+                    'Protección ósea y cardiovascular a largo plazo.'
+                ]
+            },
+            'rinomodelacion': {
+                title: 'Rinomodelación',
+                subtitle: 'Perfilado Sin Cirugía',
+                icon: 'face_3',
+                desc: 'Corrección estética de la nariz mediante la aplicación precisa de Ácido Hialurónico de alta densidad. Permite rectificar el dorso, elevar la punta nasal y armonizar el perfil en una sesión de 30 minutos, sin anestesia general ni postoperatorio.',
+                target: 'Pacientes inconformes con la forma de su nariz (giba dorsal, punta caída) que buscan una mejora estética inmediata sin los riesgos ni tiempos de recuperación de una rinoplastia quirúrgica.',
+                benefits: [
+                    'Resultados inmediatos y visibles al momento.',
+                    'Sin yesos, férulas ni reposo; vida normal al salir.',
+                    'Procedimiento reversible y ajustable.',
+                    'Mejora la armonía facial total de perfil y frente.'
+                ]
+            },
+            'antiage': {
+                title: 'Medicina Anti-Age',
+                subtitle: 'Nutrigenómica Orthomolecular',
+                icon: 'auto_awesome',
+                desc: 'Un enfoque integral que va más allá de la estética externa. A través de estudios personalizados, diseñamos un plan de suplementación orthomolecular y alimentación para optimizar el funcionamiento celular, combatir el estrés oxidativo y prevenir enfermedades.',
+                target: 'Personas sanas que quieren mantenerse así, o pacientes con fatiga, estrés o envejecimiento prematuro que buscan potenciar su salud desde el interior para reflejarlo en el exterior.',
+                benefits: [
+                    'Fortalecimiento del sistema inmunológico.',
+                    'Mayor rendimiento físico y mental.',
+                    'Piel, cabello y uñas más fuertes y sanos.',
+                    'Prevención proactiva del envejecimiento celular.'
+                ]
+            }
+        };
+
+        function openTreatmentModal(key) {
+            const data = treatmentData[key];
+            if (!data) return;
+
+            // Populate Modal
+            document.getElementById('t-title').innerText = data.title;
+            document.getElementById('t-subtitle').innerText = data.subtitle;
+            document.getElementById('t-icon').innerText = data.icon;
+            document.getElementById('t-desc').innerText = data.desc;
+            document.getElementById('t-target').innerText = data.target;
+
+            // Populate Benefits List
+            const benefitsList = document.getElementById('t-benefits');
+            benefitsList.innerHTML = ''; // Clear previous
+            data.benefits.forEach(benefit => {
+                const li = document.createElement('li');
+                li.innerText = benefit;
+                benefitsList.appendChild(li);
+            });
+
+            openModal('treatment-modal');
+        }
+
+        // --- Reusable Horizontal Drag Scroll ---
+        function initDragScroll(sliderId) {
+            const slider = document.getElementById(sliderId);
+            if (!slider) return;
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.classList.add('active:cursor-grabbing');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                slider.classList.remove('active:cursor-grabbing');
+            });
+
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.classList.remove('active:cursor-grabbing');
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2; // Scroll-fast
+                slider.scrollLeft = scrollLeft - walk;
+            });
+        }
+
+        initDragScroll('stats-slider');
+        initDragScroll('testimonials-slider');
+
+        // Intersection Observer for Reveal Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left').forEach(el => observer.observe(el));
+
+        // Smart Sticky Header
+        let lastScrollTop = 0;
+        const header = document.getElementById('main-header');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scroll Down
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                // Scroll Up
+                header.style.transform = 'translateY(0)';
+            }
+
+            if (scrollTop > 50) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+
+            lastScrollTop = scrollTop;
+        });
+
+        // Comparison Slider Logic
+        function initComparisonSlider(containerId) {
+            const container = document.getElementById(containerId);
+            const resize = container.querySelector('.resize');
+            const handle = container.querySelector('.handle');
+            let dragging = false;
+
+            const move = (x) => {
+                let posX = x - container.getBoundingClientRect().left;
+                if (posX < 0) posX = 0;
+                if (posX > container.offsetWidth) posX = container.offsetWidth;
+
+                resize.style.width = posX + 'px';
+                handle.style.left = posX + 'px';
+
+                // Highlight logic
+                const percentage = (posX / container.offsetWidth) * 100;
+                const labelBefore = container.querySelector('#label-before');
+                const labelAfter = container.querySelector('#label-after');
+
+                if (percentage > 66) {
+                    // Showing mostly "Antes" (Left side image exposed)
+                    if (labelBefore) {
+                        labelBefore.style.opacity = '1';
+                        labelBefore.style.transform = 'scale(1.1)';
+                    }
+                    if (labelAfter) {
+                        labelAfter.style.opacity = '0.3';
+                        labelAfter.style.transform = 'scale(0.9)';
+                    }
+                    handle.style.setProperty('--handle-color', '#2d3748'); // Dark for "Before"
+                    handle.style.setProperty('--handle-text-color', '#fff');
+                } else if (percentage < 33) {
+                    // Showing mostly "Después" (Right side image exposed)
+                    if (labelBefore) {
+                        labelBefore.style.opacity = '0.3';
+                        labelBefore.style.transform = 'scale(0.9)';
+                    }
+                    if (labelAfter) {
+                        labelAfter.style.opacity = '1';
+                        labelAfter.style.transform = 'scale(1.1)';
+                    }
+                    handle.style.setProperty('--handle-color', '#1F4E5A'); // Brand for "After"
+                    handle.style.setProperty('--handle-text-color', '#fff');
+                } else {
+                    // Neutral state
+                    if (labelBefore) {
+                        labelBefore.style.opacity = '0.6';
+                        labelBefore.style.transform = 'scale(1)';
+                    }
+                    if (labelAfter) {
+                        labelAfter.style.opacity = '0.6';
+                        labelAfter.style.transform = 'scale(1)';
+                    }
+                    handle.style.setProperty('--handle-color', '#fff');
+                    handle.style.setProperty('--handle-text-color', '#1F4E5A');
+                }
+            };
+
+            container.addEventListener('mousedown', () => dragging = true);
+            window.addEventListener('mouseup', () => dragging = false);
+
+            container.addEventListener('touchstart', () => dragging = true);
+            window.addEventListener('touchend', () => dragging = false);
+
+            window.addEventListener('mousemove', (e) => {
+                if (dragging) move(e.pageX);
+            });
+
+            window.addEventListener('touchmove', (e) => {
+                if (dragging) move(e.touches[0].pageX);
+            });
+        }
+
+        initComparisonSlider('varices-slider');
+
+        // --- Slider Navigation & Pagination & AutoPlay ---
+        const sliders = [
+            { id: 'stats-slider', dotsId: 'stats-dots', interval: 5000 },
+            { id: 'testimonials-slider', dotsId: 'testimonials-dots', interval: 8000 }
+        ];
+
+        function scrollSlider(id, direction) {
+            const slider = document.getElementById(id);
+            if (!slider) return;
+            const scrollAmount = slider.offsetWidth * 0.8;
+            slider.scrollBy({
+                left: direction === 'next' ? scrollAmount : -scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        function updateDots(sliderId, dotsId) {
+            const slider = document.getElementById(sliderId);
+            const dotsContainer = document.getElementById(dotsId);
+            if (!slider || !dotsContainer) return;
+
+            const children = slider.children;
+            const total = children.length;
+            const scrollLeft = slider.scrollLeft;
+            const width = slider.offsetWidth;
+            const activeIndex = Math.round(scrollLeft / (slider.scrollWidth / total));
+
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < total; i++) {
+                const dot = document.createElement('div');
+                dot.className = `dot ${i === activeIndex ? 'active' : ''}`;
+                dot.onclick = () => {
+                    slider.scrollTo({
+                        left: (slider.scrollWidth / total) * i,
+                        behavior: 'smooth'
+                    });
+                };
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        sliders.forEach(config => {
+            const slider = document.getElementById(config.id);
+            if (!slider) return;
+
+            // Initial dots
+            updateDots(config.id, config.dotsId);
+
+            // Update dots on scroll
+            slider.addEventListener('scroll', () => {
+                clearTimeout(slider.scrollTimeout);
+                slider.scrollTimeout = setTimeout(() => updateDots(config.id, config.dotsId), 50);
+            });
+
+            // AutoPlay
+            let playInterval;
+            const startAutoPlay = () => {
+                playInterval = setInterval(() => {
+                    if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 10) {
+                        slider.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        scrollSlider(config.id, 'next');
+                    }
+                }, config.interval);
+            };
+
+            const stopAutoPlay = () => clearInterval(playInterval);
+
+            // Pause on interaction
+            slider.addEventListener('mouseenter', stopAutoPlay);
+            slider.addEventListener('mouseleave', startAutoPlay);
+            slider.addEventListener('touchstart', stopAutoPlay);
+            slider.addEventListener('touchend', startAutoPlay);
+
+            // Detection for AutoPlay (only if in view)
+            const sliderObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) startAutoPlay();
+                    else stopAutoPlay();
+                });
+            }, { threshold: 0.5 });
+            sliderObserver.observe(slider);
+        });
+
+        // Form Submission Simulation
+        function handleFormSubmit() {
+            const btn = document.getElementById('submit-btn');
+            const msg = document.getElementById('success-msg');
+
+            // Simulation
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> <span>Enviando...</span>';
+            btn.style.opacity = '0.7';
+            btn.style.pointerEvents = 'none';
+
+            setTimeout(() => {
+                msg.classList.remove('hidden');
+                setTimeout(() => {
+                    msg.classList.add('opacity-100', 'scale-100');
+                }, 10);
+
+                // Open WhatsApp in new tab after showing success
+                window.open('https://wa.me/5493865447836', '_blank');
+            }, 1200);
+        }
+
+        function resetForm() {
+            const btn = document.getElementById('submit-btn');
+            const msg = document.getElementById('success-msg');
+
+            msg.classList.remove('opacity-100', 'scale-100');
+            setTimeout(() => {
+                msg.classList.add('hidden');
+                btn.innerHTML = '<span>Enviar Mensaje</span> <span class="material-symbols-outlined text-[20px]">send</span>';
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+            }, 500);
+        }
+    </script>
+</body>
+
+</html>
