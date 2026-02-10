@@ -457,7 +457,7 @@
                         </div>
                         <div>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Ubicación</p>
-                            <p class="text-[15px] font-bold text-gray-900 leading-tight">Monteros, Tucumán</p>
+                            <p class="text-[14px] font-bold text-gray-900 leading-tight">Monteros & CABA</p>
                         </div>
                     </div>
 
@@ -485,7 +485,7 @@
                         </div>
                         <div>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Teléfono</p>
-                            <p class="text-[15px] font-bold text-gray-900 leading-tight">03865-447836</p>
+                            <p class="text-[15px] font-bold text-gray-900 leading-tight">3865-447836</p>
                         </div>
                     </div>
                 </div>
@@ -895,10 +895,21 @@
                             </path>
                         </svg>
                     </a>
-                    <a href="https://maps.google.com/?q=Constitución+332,Monteros,Tucumán"
-                        class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all shadow-sm">
-                        <span class="material-symbols-outlined text-[20px]">location_on</span>
-                    </a>
+                    <div class="flex flex-col items-center gap-2">
+                        <p class="text-[11px] text-gray-500 font-medium">Ubicaciones:</p>
+                        <div class="flex gap-4 justify-center">
+                            <a href="https://maps.google.com/?q=Alberdi+320,Monteros,Tucumán" target="_blank"
+                                class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all shadow-sm"
+                                title="Monteros, Tucumán">
+                                <span class="material-symbols-outlined text-[20px]">location_on</span>
+                            </a>
+                            <a href="https://maps.google.com/?q=Banegas+Estetica+Medica+Arenales+CABA" target="_blank"
+                                class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all shadow-sm"
+                                title="Arenales, CABA">
+                                <span class="material-symbols-outlined text-[20px]">apartment</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="h-px bg-gray-200 w-full max-w-[200px] mx-auto"></div>
@@ -1029,6 +1040,8 @@
                 <button onclick="switchTab('cursos')" id="tab-cursos"
                     class="tab-btn px-5 py-3 text-sm text-gray-500 font-medium whitespace-nowrap hover:text-brand-primary transition-colors">Cursos
                     y Congresos</button>
+                <button onclick="switchTab('publicaciones')" id="tab-publicaciones"
+                    class="tab-btn px-5 py-3 text-sm text-gray-500 font-medium whitespace-nowrap hover:text-brand-primary transition-colors">Publicaciones</button>
             </div>
 
             <!-- Body (Scrollable) -->
@@ -1049,10 +1062,11 @@
                             </li>
                             <li class="pl-4 border-l-2 border-brand-primary">
                                 <p class="font-bold text-gray-900">Especialista en Cirugía General</p>
-                                <p class="text-sm text-gray-600">Asociación Argentina de Cirugía (2001–2002)</p>
-                                <p class="text-sm text-gray-600 mt-1">Ministerio de Salud - Policlínico Bancario POBA
-                                    (1999–2002)</p>
-                                <p class="text-sm text-gray-600 mt-1">UBA - Facultad de Medicina (2003–2005)</p>
+                                <p class="text-[13px] text-gray-700 font-medium">Asociación Argentina de Cirugía
+                                    (2001–2002)</p>
+                                <p class="text-[13px] text-gray-600 mt-1">• Residencia de 4 años, Policlínico Bancario
+                                    POBA (1999–2002)</p>
+                                <p class="text-[13px] text-gray-600">• Universidad de Buenos Aires (2003–2005)</p>
                             </li>
                             <li class="pl-4 border-l-2 border-brand-primary">
                                 <p class="font-bold text-gray-900">Especialista en Flebología y Linfología</p>
@@ -1064,17 +1078,19 @@
                     <div class="space-y-4">
                         <h4
                             class="text-sm font-bold text-gray-900 uppercase tracking-wide border-b border-brand-primary/20 pb-2">
-                            Posgrados y Diplomaturas</h4>
-                        <ul class="space-y-3 text-sm text-gray-700">
-                            <li>• <strong>Posgrado en Medicina Estética y Antiaging (2021-2023)</strong><br /><span
-                                    class="text-gray-500">Asociación Médica Argentina - Dir. Dr. Raúl Banegas</span>
+                            Actividad Académica y Posgrados</h4>
+                        <ul class="space-y-3 text-[13px] text-gray-700">
+                            <li>• <strong>Posgrado Trienal Avanzado en Medicina Estética y
+                                    Antienvejecimiento</strong><br /><span class="text-gray-500">Asociación Médica
+                                    Argentina - Dir. Dr. Raúl Banegas (2021-2023)</span>
                             </li>
-                            <li>• <strong>Diplomatura en Estética e Inmuno-estética (2017-2019)</strong><br /><span
-                                    class="text-gray-500">Universidad Nacional de Tucumán</span></li>
-                            <li>• <strong>Gestión y Dirección en Sistemas de Salud (2008-2009)</strong><br /><span
-                                    class="text-gray-500">Universidad San Pablo T</span></li>
-                            <li>• <strong>Hands-on Anatomy Training (2023)</strong><br /><span
-                                    class="text-gray-500">ICLO Verona, Italia</span></li>
+                            <li>• <strong>Diplomatura en Clínica y Terapéutica Estética</strong><br /><span
+                                    class="text-gray-500">Universidad Nacional de Tucumán (2017-2019) - 500 hs</span>
+                            </li>
+                            <li>• <strong>Diplomatura en Gestión y Dirección en Sistemas de Salud</strong><br /><span
+                                    class="text-gray-500">Universidad San Pablo T (2008-2009)</span></li>
+                            <li>• <strong>Hands-on Training Anatomía y Disección Cadavérica</strong><br /><span
+                                    class="text-gray-500">ICLO Verona, Italia (Marzo 2023)</span></li>
                         </ul>
                     </div>
                 </div>
@@ -1088,8 +1104,8 @@
                         <li class="flex gap-3">
                             <span class="material-symbols-outlined text-brand-primary mt-0.5">medical_services</span>
                             <div>
-                                <p class="font-bold text-gray-900">Consultorio Privado</p>
-                                <p class="text-sm text-gray-600">Medicina Estética y Flebología, Monteros</p>
+                                <p class="font-bold text-gray-900">Consultorio Particular</p>
+                                <p class="text-sm text-gray-600">Alberdi 320, Monteros, Tucumán</p>
                             </div>
                         </li>
                         <li class="flex gap-3">
@@ -1102,42 +1118,149 @@
                         <li class="flex gap-3">
                             <span class="material-symbols-outlined text-brand-primary mt-0.5">group</span>
                             <div>
-                                <p class="font-bold text-gray-900">Staff Médico</p>
-                                <p class="text-sm text-gray-600">Dr. Banegas (Médica Inyectora)</p>
-                                <p class="text-sm text-gray-600">Centro Médico Estético BLER (Flebóloga)</p>
+                                <p class="font-bold text-gray-900">Staff Médico Especialista</p>
+                                <p class="text-sm text-gray-600">Banegas Estética Médica (Arenales, CABA)</p>
+                                <p class="text-sm text-gray-600">Centro Médico Estético BLER (Médica Flebóloga)</p>
                             </div>
                         </li>
                         <li class="flex gap-3">
                             <span class="material-symbols-outlined text-brand-primary mt-0.5">emergency</span>
                             <div>
-                                <p class="font-bold text-gray-900">Hospital La Madrid</p>
+                                <p class="font-bold text-gray-900">Hospital La Madrid, Monteros</p>
                                 <p class="text-sm text-gray-600">Médica Cirujana (Junio 2023 - Actualidad)</p>
                             </div>
                         </li>
                     </ul>
                     <div class="pt-4 border-t border-gray-200">
-                        <p class="text-xs text-gray-500 font-semibold mb-2">ANTECEDENTES DESTACADOS</p>
-                        <p class="text-sm text-gray-600">Ex Jefa del Centro Quirúrgico del Hospital Regional de
-                            Concepción (2011–2023).</p>
+                        <p class="text-[11px] text-gray-400 font-bold uppercase tracking-widest mb-2">Antecedentes
+                            Especiales</p>
+                        <ul class="text-sm space-y-3 text-gray-600">
+                            <li>
+                                <strong>Hospital Regional de Concepción "Miguel Belascuaín":</strong><br />
+                                Jefa del Centro Quirúrgico (2011 – Mayo 2023)
+                            </li>
+                            <li>
+                                <strong>Diplomatura en Gestión y Dirección:</strong><br />
+                                Univ. San Pablo T. (2008–2009 - Duración: 2 años)
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
                 <!-- Tab: Cursos -->
                 <div id="content-cursos" class="tab-content space-y-6">
-                    <p class="text-xs text-gray-500 italic mb-4">Selección de capacitaciones más recientes</p>
-
                     <div class="space-y-4">
-                        <h4 class="text-sm font-bold text-gray-900 border-l-4 border-brand-primary pl-2">2023 - 2024
-                        </h4>
-                        <ul class="text-sm space-y-2 text-gray-700">
-                            <li>• Seminario Complicaciones en Medicina Estética (Univ. Maimónides, Ago 2024)</li>
-                            <li>• Galderma Regional Trip (Buenos Aires, Nov 2023)</li>
-                            <li>• HarmonyCa™ Teoría y Aplicación (Oct 2023)</li>
-                            <li>• Taller de Bioremodelación y Rinomodelación (Ago 2023)</li>
-                            <li>• Terapia de Reemplazo Hormonal (Dr. Lamagni, Jul 2023)</li>
-                            <li>• BAAS Buenos Aires (Abr 2023)</li>
-                            <li>• Hands-on Training Anatomía (Verona, Italia, Mar 2023)</li>
+                        <h4
+                            class="text-sm font-bold text-gray-900 border-l-4 border-brand-primary pl-2 uppercase tracking-wide">
+                            Congresos y Capacitaciones</h4>
+                        <ul class="text-[13px] space-y-3 text-gray-700">
+                            <li class="bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                                <p
+                                    class="font-bold text-brand-primary mb-1 text-[11px] uppercase space-x-1 tracking-wider">
+                                    Recientes (2021 - 2024)</p>
+                                <ul class="space-y-1.5 text-gray-600">
+                                    <li>• Seminario “Complicaciones en Medicina Estética” (Univ. Maimónides, Ago 2024)
+                                    </li>
+                                    <li>• Galderma Regional Trip Buenos Aires (Nov 2023)</li>
+                                    <li>• Teoría y Aplicación HarmonyCa™ (Oct 2023)</li>
+                                    <li>• Taller de Bioremodelación y Bioestimulantes (Ago 2023)</li>
+                                    <li>• Rinomodelación con inyectables (Jul 2023)</li>
+                                    <li>• Terapia de reemplazo y modulación hormonal (Dr. Lamagni, Jul 2023)</li>
+                                    <li>• Máscara Siluma: química y aplicaciones (Jun 2023)</li>
+                                    <li>• BAAS Buenos Aires (Abr 2023)</li>
+                                    <li>• Join OXA 2 (Abr 2023)</li>
+                                    <li>• Hands-on Training Anatomía y Disección Cadavérica (ICLO Verona, Italia, Mar
+                                        2023)</li>
+                                    <li>• Tercio Inferior con rellenos de hialurónico (Centro Banegas, Dic 2022)</li>
+                                    <li>• Tratamiento de Ojeras con Fillers (Sep 2022)</li>
+                                    <li>• Taller Hands On Hilos Tensores (Ago 2022)</li>
+                                    <li>• Capacitación Hilos Aptos (Jun 2022)</li>
+                                    <li>• Masterclass Toxina y Rellenos Avanzado (Merz Aesthetics, Mayo 2022)</li>
+                                    <li>• The Magic of the Beauty (Oxamedical, Mayo 2022)</li>
+                                    <li>• Jornada One to One Técnicas Avanzadas Inyectables (Dr. Raúl Banegas, Mayo
+                                        2022)</li>
+                                    <li>• Masterclass Nuevo Paradigma Antiage (Ago 2021)</li>
+                                    <li>• Taller Bioestimulación Hands On (Ago 2021)</li>
+                                    <li>• Capacitación PROFHILO (Skintegrity, Sep 2021)</li>
+                                </ul>
+                            </li>
+                            <li class="bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                                <p
+                                    class="font-bold text-brand-primary mb-1 text-[11px] uppercase space-x-1 tracking-wider">
+                                    Medicina Estética y Salud (2014 - 2020)</p>
+                                <ul class="space-y-1.5 text-gray-600">
+                                    <li>• Abordaje Nutrigenómico Orthomolecular (Fimon OMOL, Dic 2020)</li>
+                                    <li>• 30° Congreso de Medicina Estética (Inst. Pintos, Ago 2020)</li>
+                                    <li>• Peelings y Patologías de la Piel (Dra. Irene Bermejo, Jun 2020)</li>
+                                    <li>• Taller de Pellets y Reemplazo Hormonal (Mayo 2020)</li>
+                                    <li>• Masterclass Toxina + Fillers (Dr. Escobar, Mayo 2020)</li>
+                                    <li>• Face-BB Glow, Bionutrilifting y Skinbooster (Inst. Pinto, Mar 2020)</li>
+                                    <li>• Enzimas Recombinantes Biológicas (Dra. Castelanich, Sep 2020)</li>
+                                    <li>• BAAS Buenos Aires (2018)</li>
+                                    <li>• Bioseguridad para el uso de Láser y Luz Pulsada (Marzo 2014)</li>
+                                    <li>• XXIV Congreso de Medicina Estética SOARME (Marzo 2014)</li>
+                                    <li>• XVI Congreso Panamericano de Flebológica (Mayo 2014)</li>
+                                </ul>
+                            </li>
+                            <li class="bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                                <p
+                                    class="font-bold text-brand-primary mb-1 text-[11px] uppercase space-x-1 tracking-wider">
+                                    Educación Médica Continua</p>
+                                <ul class="space-y-1.5 text-gray-600">
+                                    <li>• Curso Anual en Nutrición Orthomolecular y Nutrigenómica (Fimon)</li>
+                                    <li>• V Congreso Argentino de Medicina Estética (UBA, 2013)</li>
+                                    <li>• Medicina, Nutrición y Entrenamiento para la Salud (Nivel 1 y 2)</li>
+                                    <li>• Curso Cuatrimestral de Medicina Estética (Asociación Médica Argentina)</li>
+                                    <li>• Actualización en Enfermedad Venosa y Linfática (Oct 2003)</li>
+                                </ul>
+                            </li>
                         </ul>
+                    </div>
+                </div>
+
+                <!-- Tab: Publicaciones -->
+                <div id="content-publicaciones" class="tab-content space-y-6">
+                    <div class="space-y-5">
+                        <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+                            <h5 class="text-xs font-bold text-brand-primary uppercase tracking-widest mb-3">Libros
+                                Publicados</h5>
+                            <div class="flex gap-3">
+                                <span class="material-symbols-outlined text-brand-secondary">auto_stories</span>
+                                <p class="text-sm font-medium text-gray-800">
+                                    "La tiroidectomía: Técnica quirúrgica y consideraciones generales" (2003)
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest px-2">Artículos
+                                Científicos</h5>
+                            <ul class="space-y-3 text-sm">
+                                <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex gap-3">
+                                    <span class="material-symbols-outlined text-brand-primary text-xl">article</span>
+                                    <div>
+                                        <p class="font-bold text-gray-900 leading-snug">Aneurismas de la arteria
+                                            pancreatoduodenal</p>
+                                        <p class="text-[11px] text-gray-500 mt-1">Pren. Méd. Argent. 2004</p>
+                                    </div>
+                                </li>
+                                <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex gap-3">
+                                    <span class="material-symbols-outlined text-brand-primary text-xl">article</span>
+                                    <div>
+                                        <p class="font-bold text-gray-900 leading-snug">Quistes de Paratiroides</p>
+                                        <p class="text-[11px] text-gray-500 mt-1">Rev. Argent. Cirugía, 2004</p>
+                                    </div>
+                                </li>
+                                <li class="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex gap-3">
+                                    <span class="material-symbols-outlined text-brand-primary text-xl">article</span>
+                                    <div>
+                                        <p class="font-bold text-gray-900 leading-snug">Pie Diabético: la importancia
+                                            del equipo multidisciplinario</p>
+                                        <p class="text-[11px] text-gray-500 mt-1">Pren. Méd. Argent. 2002</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
