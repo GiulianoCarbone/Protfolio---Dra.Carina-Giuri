@@ -532,8 +532,9 @@
                     Tratamientos
                     <span class="absolute -bottom-1 left-0 w-1/2 h-[3px] bg-brand-primary rounded-full"></span>
                 </h3>
-                <a href="#book" class="text-[13px] font-bold text-brand-primary hover:text-brand-secondary">Ver
-                    todos</a>
+                <button onclick="openModal('treatments-catalog-modal')"
+                    class="text-[13px] font-bold text-brand-primary hover:text-brand-secondary transition-colors underline-offset-4 hover:underline">Ver
+                    todos</button>
             </div>
 
             <div class="grid grid-cols-2 gap-3">
@@ -939,8 +940,7 @@
             <div class="p-6 border-b border-gray-100 bg-brand-light">
                 <div class="flex items-center gap-3 mb-4">
                     <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=100"
-                            alt="Dra. Carina Giuri" class="w-full h-full object-cover" />
+                        <img src="assets/img/PERFIL.jpg" alt="Dra. Carina Giuri" class="w-full h-full object-cover" />
                     </div>
                     <div>
                         <h3 class="font-bold text-gray-900 leading-tight">Dra. Carina Giuri</h3>
@@ -1150,6 +1150,75 @@
         </div>
     </div>
 
+    <!-- Treatments Catalog Modal -->
+    <div id="treatments-catalog-modal"
+        class="modal fixed inset-0 z-[60] flex items-end sm:items-center justify-center sm:p-4">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+            onclick="closeModal('treatments-catalog-modal')"></div>
+
+        <!-- Content -->
+        <div
+            class="modal-content bg-white w-full max-w-lg sm:rounded-2xl rounded-t-2xl shadow-2xl flex flex-col relative z-10 overflow-hidden max-h-[90vh]">
+            <!-- Header -->
+            <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-white shrink-0">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 font-serif italic">Catálogo de Tratamientos</h3>
+                    <p class="text-xs text-brand-primary font-semibold uppercase tracking-wider">Dra. Carina Giuri</p>
+                </div>
+                <button onclick="closeModal('treatments-catalog-modal')"
+                    class="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-500">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <!-- List (Scrollable) -->
+            <div class="overflow-y-auto p-4 bg-gray-50/50 space-y-3">
+                <p class="text-[13px] text-gray-500 px-1 mb-2">Explora todos nuestros servicios médicos y estéticos:</p>
+
+                <div class="grid grid-cols-1 gap-3" id="catalog-list">
+                    <!-- JavaScript will populate this if needed, but for simplicity let's use a small script here -->
+                    <script>
+                        // Small script to auto-populate the catalog from treatmentData
+                        window.addEventListener('DOMContentLoaded', () => {
+                            const catalogList = document.getElementById('catalog-list');
+                            if (!catalogList) return;
+
+                            Object.keys(treatmentData).forEach(key => {
+                                const item = treatmentData[key];
+                                const card = document.createElement('div');
+                                card.className = "bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center justify-between group";
+                                card.onclick = () => {
+                                    closeModal('treatments-catalog-modal');
+                                    setTimeout(() => openTreatmentModal(key), 300);
+                                };
+
+                                card.innerHTML = `
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center text-brand-primary">
+                                            <span class="material-symbols-outlined text-[22px] font-light">${item.icon}</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-[14px] text-gray-900 leading-tight">${item.title}</h4>
+                                            <p class="text-[11px] text-gray-500 mt-0.5">${item.subtitle}</p>
+                                        </div>
+                                    </div>
+                                    <span class="material-symbols-outlined text-gray-300 text-[18px] group-hover:text-brand-primary group-hover:translate-x-1 transition-all">chevron_right</span>
+                                `;
+                                catalogList.appendChild(card);
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-gray-100 bg-white text-center">
+                <p class="text-[11px] text-gray-400 italic font-medium">Cada tratamiento es personalizado bajo estricto
+                    criterio médico.</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Treatment Info Modal -->
     <div id="treatment-modal" class="modal fixed inset-0 z-[60] flex items-end sm:items-center justify-center sm:p-4">
         <!-- Backdrop -->
@@ -1303,6 +1372,45 @@
                     'Mayor rendimiento físico y mental.',
                     'Piel, cabello y uñas más fuertes y sanos.',
                     'Prevención proactiva del envejecimiento celular.'
+                ]
+            },
+            'mesoterapia': {
+                title: 'Mesoterapia',
+                subtitle: 'Nutrición Dérmica Directa',
+                icon: 'colorize',
+                desc: 'Microinyecciones de vitaminas, minerales y aminoácidos directamente en la capa media de la piel. Ideal para revitalizar, hidratar y tensar sin volumen extra.',
+                target: 'Pacientes que buscan mejorar la textura de la piel, tratar la flacidez leve o combatir la celulitis y grasa localizada.',
+                benefits: [
+                    'Hidratación profunda y luminosidad.',
+                    'Estimulación de la producción de colágeno.',
+                    'Reducción de la retención de líquidos.',
+                    'Mejora visible en la calidad de la piel.'
+                ]
+            },
+            'prp': {
+                title: 'Plasma Rico en Plaquetas',
+                subtitle: 'Bioestimulación Autóloga',
+                icon: 'bloodtype',
+                desc: 'Utilizamos los factores de crecimiento de tu propia sangre para regenerar tejidos. Es un tratamiento 100% biocompatible que acelera la reparación celular.',
+                target: 'Búsqueda de rejuvenecimiento facial natural, tratamiento de cicatrices o recuperación capilar.',
+                benefits: [
+                    'Regeneración de tejidos dañados.',
+                    'Mejora la elasticidad y firmeza.',
+                    'Sin riesgo de alergias al ser natural.',
+                    'Efecto revitalizante progresivo.'
+                ]
+            },
+            'peeling': {
+                title: 'Peeling Químico',
+                subtitle: 'Renovación Celular',
+                icon: 'layers',
+                desc: 'Aplicación de ácidos médicos para exfoliar capas dañadas de la piel, permitiendo que surja piel nueva, más suave y uniforme.',
+                target: 'Tratamiento de manchas, acné, poros abiertos o pequeñas arrugas superficiales.',
+                benefits: [
+                    'Unifica el tono de la piel.',
+                    'Reduce imperfecciones y cicatrices de acné.',
+                    'Estimula la renovación celular profunda.',
+                    'Suaviza la textura del rostro.'
                 ]
             }
         };
