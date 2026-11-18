@@ -14,6 +14,17 @@
     /* ---------- Enlaces de WhatsApp con mensaje precargado ---------- */
     $$('[data-wa]').forEach((a) => { a.href = waLink(a.dataset.wa); });
 
+    /* ---------- Crédito del desarrollador (footer) ----------
+       Número en formato internacional sin "+" ni espacios (ej. 549381XXXXXXX).
+       Si queda vacío, el crédito no se muestra. */
+    const DEV_WA_NUMBER = '5493863552800';
+    const DEV_WA_TEXT = 'Hola DevSing, vi el sitio de la Dra. Carina Giuri y me interesa una página web.';
+    const credit = $('#dev-credit');
+    if (credit && DEV_WA_NUMBER) {
+        credit.href = `https://wa.me/${DEV_WA_NUMBER}?text=${encodeURIComponent(DEV_WA_TEXT)}`;
+        credit.hidden = false;
+    }
+
     /* ---------- Datos de tratamientos ---------- */
     const treatments = {
         flebologia: {

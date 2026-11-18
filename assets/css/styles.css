@@ -481,8 +481,15 @@ select.input {
 .site-footer { background: var(--bg); padding-block: 56px 40px; border-top: 1px solid var(--line); color: var(--text-2); }
 .footer-name { font-family: var(--serif); font-weight: 500; font-size: clamp(2.2rem, 1.8rem + 4vw, 4.2rem); line-height: 1.05; letter-spacing: -.025em; color: var(--text); }
 .footer-sub { margin-top: 12px; font-size: .95rem; }
-.footer-legal { margin-top: 28px; font-size: .8rem; max-width: 60ch; color: var(--text-3); }
-.footer-legal + .footer-legal { margin-top: 8px; }
+.footer-bottom {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px;
+    margin-top: 40px; padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: .8rem; color: var(--text-3);
+}
+.footer-credit { display: inline-flex; align-items: center; min-height: 44px; transition: color .2s; }
+.footer-credit span { color: var(--text-2); border-bottom: 1px solid transparent; transition: border-color .2s, color .2s; }
+.footer-credit:hover span { color: var(--text); border-bottom-color: currentColor; }
 
 /* ---------- Barra fija mobile ---------- */
 .dock {
