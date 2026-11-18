@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Instrument+Serif&display=swap" />
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Geist:wght@300..600&display=swap" />
     <link rel="preload" as="image" href="assets/img/PERFIL.jpg" fetchpriority="high" />
     <link rel="stylesheet" href="assets/css/styles.css" />
 
@@ -101,9 +101,8 @@
             <a href="#sobre-mi" data-close><span>01</span>Sobre mí</a>
             <a href="#tratamientos" data-close><span>02</span>Tratamientos</a>
             <a href="#primera-consulta" data-close><span>03</span>Primera consulta</a>
-            <a href="#experiencias" data-close><span>04</span>Experiencias</a>
-            <a href="#preguntas" data-close><span>05</span>Preguntas</a>
-            <a href="#contacto" data-close><span>06</span>Turnos y sedes</a>
+            <a href="#preguntas" data-close><span>04</span>Preguntas</a>
+            <a href="#contacto" data-close><span>05</span>Turnos y sedes</a>
         </nav>
         <div class="menu-foot wrap">
             <a href="tel:+5493865447836">3865-447836</a>
@@ -167,6 +166,11 @@
         <!-- ============ 01 Sobre mí ============ -->
         <section class="section" id="sobre-mi" aria-labelledby="about-title">
             <div class="wrap about">
+                <figure class="about-media reveal">
+                    <img src="assets/img/sobre-mi.jpg" width="768" height="1024" loading="lazy"
+                        alt="La Dra. Carina Giuri de perfil en un quirófano, colocándose los guantes" />
+                </figure>
+                <div class="about-copy">
                 <p class="label reveal"><span>01</span>Sobre mí</p>
                 <h2 id="about-title" class="statement reveal">
                     Doce años al frente de un centro quirúrgico. Hoy, esa precisión está al servicio de la
@@ -192,6 +196,7 @@
                             Ver trayectoria completa <svg aria-hidden="true"><use href="#i-arrow" /></svg>
                         </button>
                     </div>
+                </div>
                 </div>
             </div>
         </section>
@@ -338,35 +343,11 @@
             </div>
         </section>
 
-        <!-- ============ 04 Experiencias ============ -->
-        <section class="section" id="experiencias" aria-labelledby="quotes-title">
-            <div class="wrap">
-                <p class="label reveal"><span>04</span>Experiencias</p>
-                <h2 id="quotes-title" class="sr-only">Experiencias de pacientes</h2>
-            </div>
-            <div class="quotes" tabindex="0" aria-label="Testimonios, deslizá para ver más">
-                <figure class="quote reveal">
-                    <blockquote>
-                        Me realicé un tratamiento de várices y los resultados fueron increíbles. La atención de la
-                        Dra. es impecable y muy cálida.
-                    </blockquote>
-                    <figcaption>María G. <span>Tratamiento flebológico</span></figcaption>
-                </figure>
-                <figure class="quote reveal">
-                    <blockquote>
-                        Súper conforme con el botox y los rellenos. Resultados naturales, que era lo que buscaba.
-                        Me sentí muy segura en sus manos.
-                    </blockquote>
-                    <figcaption>Ana P. <span>Estética facial</span></figcaption>
-                </figure>
-            </div>
-        </section>
-
-        <!-- ============ 05 Preguntas ============ -->
+        <!-- ============ 04 Preguntas ============ -->
         <section class="section" id="preguntas" aria-labelledby="faq-title">
             <div class="wrap faq">
                 <div class="faq-head">
-                    <p class="label reveal"><span>05</span>Preguntas</p>
+                    <p class="label reveal"><span>04</span>Preguntas</p>
                     <h2 id="faq-title" class="reveal">Antes de tu consulta</h2>
                 </div>
                 <div class="faq-list reveal">
@@ -394,10 +375,10 @@
             </div>
         </section>
 
-        <!-- ============ 06 Contacto ============ -->
+        <!-- ============ 05 Contacto ============ -->
         <section class="section contact" id="contacto" aria-labelledby="contact-title">
             <div class="wrap">
-                <p class="label reveal"><span>06</span>Turnos y sedes</p>
+                <p class="label reveal"><span>05</span>Turnos y sedes</p>
                 <h2 id="contact-title" class="reveal">Pedí tu turno</h2>
 
                 <div class="contact-grid">
@@ -503,23 +484,25 @@
     </div>
 
     <!-- ============ Ficha de tratamiento (bottom sheet) ============ -->
-    <dialog class="sheet" id="treatment" aria-labelledby="t-title">
-        <div class="sheet-grab sheet-hero">
-            <img id="t-img" src="assets/img/tratamientos/flebologia.jpg" width="768" height="1024" alt="" />
-            <span class="grabber" aria-hidden="true"></span>
-            <button class="sheet-close" type="button" aria-label="Cerrar" data-close>
-                <svg aria-hidden="true"><use href="#i-close" /></svg>
-            </button>
-            <p class="t-cat" id="t-cat"></p>
-            <h2 id="t-title"></h2>
-            <p class="t-sub" id="t-subtitle"></p>
-        </div>
-        <div class="sheet-body">
-            <p class="t-lead" id="t-desc"></p>
-            <h3>Para quién es</h3>
-            <p id="t-target"></p>
-            <h3>Beneficios</h3>
-            <ul class="t-benefits" id="t-benefits" role="list"></ul>
+    <dialog class="sheet tsheet" id="treatment" aria-labelledby="t-title">
+        <button class="sheet-close" type="button" aria-label="Cerrar" data-close>
+            <svg aria-hidden="true"><use href="#i-close" /></svg>
+        </button>
+        <div class="tsheet-scroll" data-swipe-scroll>
+            <div class="tsheet-media" data-swipe-handle>
+                <img id="t-img" src="assets/img/tratamientos/flebologia.jpg" width="768" height="1024" alt="" />
+                <span class="grabber" aria-hidden="true"></span>
+            </div>
+            <div class="tsheet-content">
+                <p class="t-cat" id="t-cat"></p>
+                <h2 id="t-title"></h2>
+                <p class="t-sub" id="t-subtitle"></p>
+                <p class="t-lead" id="t-desc"></p>
+                <h3>Para quién es</h3>
+                <p class="t-target" id="t-target"></p>
+                <h3>Beneficios</h3>
+                <ul class="t-benefits" id="t-benefits" role="list"></ul>
+            </div>
         </div>
         <div class="sheet-foot">
             <a class="btn btn-solid btn-block" id="t-cta" href="https://wa.me/5493865447836" target="_blank"
@@ -531,7 +514,7 @@
 
     <!-- ============ Trayectoria (bottom sheet) ============ -->
     <dialog class="sheet sheet-tall" id="cv" aria-labelledby="cv-title">
-        <div class="sheet-grab">
+        <div class="sheet-grab" data-swipe-handle>
             <span class="grabber" aria-hidden="true"></span>
             <button class="sheet-close" type="button" aria-label="Cerrar" data-close>
                 <svg aria-hidden="true"><use href="#i-close" /></svg>
@@ -547,7 +530,7 @@
             <button class="tab" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false" tabindex="-1">Publicaciones</button>
         </div>
 
-        <div class="sheet-body">
+        <div class="sheet-body" data-swipe-scroll>
             <div role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0">
                 <h3>Títulos universitarios</h3>
                 <ul class="cv" role="list">

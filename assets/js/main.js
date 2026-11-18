@@ -91,8 +91,7 @@
         if (!dlg || dlg.open) return;
         $$('dialog[open]').forEach((d) => d.close());
         dlg.showModal();
-        const body = $('.sheet-body', dlg);
-        if (body) body.scrollTop = 0;
+        $$('[data-swipe-scroll], .tsheet-content', dlg).forEach((el) => { el.scrollTop = 0; });
     };
 
     document.addEventListener('click', (e) => {
@@ -128,32 +127,40 @@
         });
     });
 
-    /* Deslizar hacia abajo para cerrar (bottom sheets en mobile) */
+    /* Deslizar hacia abajo para cerrar (bottom sheets en mobile).
+       Se arrastra desde la cabecera, o desde el contenido cuando ya está arriba de todo. */
     $$('.sheet').forEach((sheet) => {
-        const grab = $('.sheet-grab', sheet);
-        if (!grab) return;
-        let startY = null, dy = 0, dragging = false, pid = null;
+        const scroller = $('[data-swipe-scroll]', sheet);
+        let y0 = null, dy = 0, dragging = false, fromHandle = false;
 
-        grab.addEventListener('pointerdown', (e) => {
-            if (window.innerWidth >= 720 || e.target.closest('button')) return;
-            startY = e.clientY; dy = 0; dragging = false; pid = e.pointerId;
-        });
-        grab.addEventListener('pointermove', (e) => {
-            if (startY === null || e.pointerId !== pid) return;
-            dy = Math.max(0, e.clientY - startY);
-            if (!dragging && dy > 6) {
-                dragging = true;
-                grab.setPointerCapture(pid);
-                sheet.style.transition = 'none';
+        sheet.addEventListener('touchstart', (e) => {
+            if (window.innerWidth >= 720 || e.touches.length > 1 || e.target.closest('button, a')) return;
+            fromHandle = !!e.target.closest('[data-swipe-handle]');
+            const atTop = scroller && scroller.contains(e.target) && scroller.scrollTop <= 0;
+            if (!fromHandle && !atTop) return;
+            y0 = e.touches[0].clientY; dy = 0; dragging = false;
+        }, { passive: true });
+
+        sheet.addEventListener('touchmove', (e) => {
+            if (y0 === null) return;
+            dy = e.touches[0].clientY - y0;
+            if (!dragging) {
+                if (dy < -4 || (!fromHandle && scroller.scrollTop > 0)) { y0 = null; return; }
+                if (dy > 6) { dragging = true; sheet.style.transition = 'none'; }
             }
-            if (dragging) sheet.style.transform = `translateY(${dy}px)`;
-        });
+            if (dragging) {
+                e.preventDefault();
+                sheet.style.transform = `translateY(${Math.max(0, dy)}px)`;
+            }
+        }, { passive: false });
+
         const end = () => {
-            if (startY === null) return;
-            startY = null;
+            if (y0 === null) return;
+            y0 = null;
             if (!dragging) return;
+            dragging = false;
             sheet.style.transition = 'transform .25s cubic-bezier(.22,.8,.24,1)';
-            if (dy > Math.min(140, sheet.offsetHeight * 0.25)) {
+            if (dy > Math.min(140, sheet.offsetHeight * 0.22)) {
                 sheet.style.transform = 'translateY(100%)';
                 setTimeout(() => { sheet.close(); sheet.style.transform = ''; sheet.style.transition = ''; }, 240);
             } else {
@@ -161,8 +168,8 @@
                 setTimeout(() => { sheet.style.transition = ''; }, 260);
             }
         };
-        grab.addEventListener('pointerup', end);
-        grab.addEventListener('pointercancel', end);
+        sheet.addEventListener('touchend', end);
+        sheet.addEventListener('touchcancel', end);
     });
 
     /* ---------- Ficha de tratamiento ---------- */
@@ -199,7 +206,7 @@
             document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
         });
         tab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-        const body = tab.closest('dialog').querySelector('.sheet-body');
+        const body = tab.closest('dialog').querySelector('[data-swipe-scroll]');
         if (body) body.scrollTop = 0;
     };
     tabs.forEach((tab, i) => {
