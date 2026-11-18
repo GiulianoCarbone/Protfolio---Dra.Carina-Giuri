@@ -1,470 +1,647 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR" class="no-js">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Su sitio Web necesita ser reactivado · Dra. Carina Giuri</title>
-    <meta name="description" content="Su sitio web no se encuentra activo. Contáctese con su desarrollador web para gestionar la reactivación." />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Dra. Carina Giuri · Medicina Estética y Flebología · Monteros y CABA</title>
+    <meta name="description"
+        content="Dra. Carina Giuri, médica cirujana y flebóloga (UCA) con Diploma de Honor de la Universidad Favaloro. Medicina estética, flebología y bienestar en Monteros, Tucumán, y en CABA. Pedí tu turno por WhatsApp." />
+    <meta name="theme-color" content="#0d161c" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:title" content="Dra. Carina Giuri · Medicina Estética y Flebología" />
+    <meta property="og:description"
+        content="Estética y flebología con mirada de cirujana. Atención en Monteros (Tucumán) y CABA." />
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f4e5a'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='34' fill='%23ffffff'%3EG%3C/text%3E%3C/svg%3E" />
+
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Instrument+Serif&display=swap" />
+    <link rel="preload" as="image" href="assets/img/PERFIL.jpg" fetchpriority="high" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
 
-    <style>
-        /* ── Reset & Base ── */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        :root {
-            --brand-primary:   #1F4E5A;
-            --brand-secondary: #2A6473;
-            --brand-accent:    #3D7B8A;
-            --brand-light:     #E9F2F4;
-            --brand-cream:     #FFF9F0;
-            --text-main:       #2D3748;
-            --text-muted:      #718096;
-            --wa-green:        #25D366;
-            --wa-dark:         #128C7E;
-        }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--brand-cream);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* ── Animated Background ── */
-        .bg-orbs {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.18;
-            animation: float 12s ease-in-out infinite;
-        }
-
-        .orb-1 {
-            width: 500px; height: 500px;
-            background: var(--brand-primary);
-            top: -150px; left: -150px;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 400px; height: 400px;
-            background: var(--brand-accent);
-            bottom: -120px; right: -120px;
-            animation-delay: -5s;
-        }
-
-        .orb-3 {
-            width: 280px; height: 280px;
-            background: #8BBCC4;
-            top: 40%; left: 60%;
-            animation-delay: -9s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33%       { transform: translate(30px, -20px) scale(1.05); }
-            66%       { transform: translate(-20px, 30px) scale(0.97); }
-        }
-
-        /* ── Card ── */
-        .card {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: 480px;
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 2rem;
-            padding: 3rem 2.5rem 2.5rem;
-            box-shadow: 0 25px 60px -10px rgba(31, 78, 90, 0.18), 0 0 0 1px rgba(255,255,255,0.4) inset;
-            text-align: center;
-            animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px) scale(0.97); }
-            to   { opacity: 1; transform: translateY(0)    scale(1); }
-        }
-
-        /* ── Icon Badge ── */
-        .icon-badge {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #D97706, #F59E0B);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.75rem;
-            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.35);
-            animation: pulse-ring 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse-ring {
-            0%, 100% { box-shadow: 0 10px 30px rgba(217, 119, 6, 0.35); }
-            50%       { box-shadow: 0 10px 30px rgba(217, 119, 6, 0.35), 0 0 0 12px rgba(217, 119, 6, 0.1); }
-        }
-
-        .icon-badge svg {
-            width: 38px;
-            height: 38px;
-            color: #fff;
-            stroke: #fff;
-        }
-
-        /* ── Chip ── */
-        .chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #FEF3C7;
-            color: #92400E;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            padding: 6px 14px;
-            border-radius: 999px;
-            margin-bottom: 1.25rem;
-        }
-
-        .chip-dot {
-            width: 7px;
-            height: 7px;
-            background: #F59E0B;
-            border-radius: 50%;
-            animation: blink 1.8s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50%       { opacity: 0.3; }
-        }
-
-        /* ── Typography ── */
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: clamp(1.6rem, 5vw, 2rem);
-            font-weight: 800;
-            color: #1a202c;
-            line-height: 1.15;
-            margin-bottom: 0.85rem;
-        }
-
-        h1 span { color: var(--brand-primary); }
-
-        .subtitle {
-            font-size: 15px;
-            color: var(--text-muted);
-            line-height: 1.65;
-            margin-bottom: 2rem;
-        }
-
-        /* ── Divider ── */
-        .divider {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 0.25rem 0 1.75rem;
-        }
-
-        .divider-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(31,78,90,0.15), transparent);
-        }
-
-        .divider-text {
-            font-size: 11px;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
-            font-weight: 500;
-        }
-
-        /* ── WhatsApp Button ── */
-        .btn-whatsapp {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            height: 58px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: #fff;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 1rem;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
-            overflow: hidden;
-            letter-spacing: 0.01em;
-        }
-
-        .btn-whatsapp::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent);
-            pointer-events: none;
-        }
-
-        .btn-whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 32px rgba(37, 211, 102, 0.45);
-        }
-
-        .btn-whatsapp:active {
-            transform: scale(0.97);
-        }
-
-        .btn-whatsapp svg {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-        }
-
-        /* ── Footer note ── */
-        .footer-note {
-            margin-top: 2rem;
-            font-size: 12px;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .footer-note svg {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
-            color: var(--brand-primary);
-        }
-
-        /* ── Progress Bar ── */
-        .progress-wrap {
-            margin-bottom: 1.75rem;
-        }
-
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 8px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 6px;
-            background: rgba(31,78,90,0.1);
-            border-radius: 999px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            width: 72%;
-            background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent));
-            border-radius: 999px;
-            position: relative;
-            animation: grow 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both;
-        }
-
-        @keyframes grow {
-            from { width: 0; }
-            to   { width: 72%; }
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0; right: 0; bottom: 0;
-            width: 30px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5));
-            animation: shimmer 2s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0%   { opacity: 0; transform: translateX(-20px); }
-            50%  { opacity: 1; }
-            100% { opacity: 0; transform: translateX(10px); }
-        }
-
-        /* ── Doctor signature ── */
-        .doctor-info {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 1.75rem;
-            padding: 12px 16px;
-            background: var(--brand-light);
-            border-radius: 1rem;
-            border: 1px solid rgba(31,78,90,0.08);
-        }
-
-        .doctor-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-            font-family: 'Playfair Display', serif;
-            flex-shrink: 0;
-        }
-
-        .doctor-text { text-align: left; }
-
-        .doctor-name {
-            font-size: 14px;
-            font-weight: 700;
-            color: #1a202c;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-        }
-
-        .doctor-specialty {
-            font-size: 11px;
-            color: var(--brand-secondary);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-
-        /* ── Responsive ── */
-        @media (max-width: 400px) {
-            .card { padding: 2.25rem 1.5rem 2rem; }
-        }
-    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Physician",
+        "name": "Dra. Carina Giuri",
+        "description": "Médica cirujana, flebóloga y especialista en medicina estética.",
+        "telephone": "+54 9 3865 44-7836",
+        "email": "carigiuri@gmail.com",
+        "sameAs": ["https://instagram.com/Dra.carinagiuri"],
+        "address": [
+            { "@type": "PostalAddress", "streetAddress": "Alberdi 320", "addressLocality": "Monteros", "addressRegion": "Tucumán", "addressCountry": "AR" },
+            { "@type": "PostalAddress", "streetAddress": "Arenales", "addressLocality": "Ciudad Autónoma de Buenos Aires", "addressCountry": "AR" }
+        ]
+    }
+    </script>
 </head>
 
 <body>
+    <!-- Íconos -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="i-wa" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.870 9.870 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.860 9.860 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.480-8.413Z" />
+        </symbol>
+        <symbol id="i-ig" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6" />
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6" />
+            <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" />
+        </symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+                d="M21 16.4v2.7a1.8 1.8 0 0 1-2 1.8 17.8 17.8 0 0 1-7.8-2.8 17.5 17.5 0 0 1-5.4-5.4A17.8 17.8 0 0 1 3 4.9 1.8 1.8 0 0 1 4.8 3h2.7a1.8 1.8 0 0 1 1.8 1.5c.1.9.3 1.7.6 2.5a1.8 1.8 0 0 1-.4 1.9L8.3 10.1a14.4 14.4 0 0 0 5.4 5.4l1.2-1.2a1.8 1.8 0 0 1 1.9-.4c.8.3 1.6.5 2.5.6a1.8 1.8 0 0 1 1.7 1.9z" />
+        </symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6" />
+            <path d="m3.5 6.5 8.5 6.5 8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+            <path d="M4 12h15M13.5 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="i-out" viewBox="0 0 24 24">
+            <path d="M7 17 17 7M8.5 7H17v8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="i-close" viewBox="0 0 24 24">
+            <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </symbol>
+    </svg>
 
-    <!-- Animated background orbs -->
-    <div class="bg-orbs" aria-hidden="true">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-    </div>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-    <!-- Main card -->
-    <main class="card" role="main">
-
-        <!-- Icon: Alert / Aviso -->
-        <div class="icon-badge" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                <line x1="12" y1="9" x2="12" y2="13"/>
-                <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
+    <!-- ============ Header ============ -->
+    <header class="site-header" id="site-header">
+        <div class="wrap header-inner">
+            <a href="#inicio" class="logo">Dra. Carina Giuri</a>
+            <nav class="nav" aria-label="Principal">
+                <a href="#sobre-mi">Sobre mí</a>
+                <a href="#tratamientos">Tratamientos</a>
+                <a href="#primera-consulta">Primera consulta</a>
+                <a href="#preguntas">Preguntas</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <a class="header-cta" href="#contacto">Pedir turno</a>
+            <button class="menu-btn" type="button" data-open="menu" aria-haspopup="dialog">Menú</button>
         </div>
+    </header>
 
-        <!-- Status chip -->
-        <div class="chip">
-            <span class="chip-dot"></span>
-            Sitio Inactivo
+    <!-- Menú mobile (pantalla completa) -->
+    <dialog class="menu" id="menu" aria-label="Menú">
+        <div class="menu-top wrap">
+            <span class="logo">Dra. Carina Giuri</span>
+            <button class="menu-btn" type="button" data-close>Cerrar</button>
         </div>
+        <nav class="menu-nav wrap" aria-label="Secciones">
+            <a href="#sobre-mi" data-close><span>01</span>Sobre mí</a>
+            <a href="#tratamientos" data-close><span>02</span>Tratamientos</a>
+            <a href="#primera-consulta" data-close><span>03</span>Primera consulta</a>
+            <a href="#experiencias" data-close><span>04</span>Experiencias</a>
+            <a href="#preguntas" data-close><span>05</span>Preguntas</a>
+            <a href="#contacto" data-close><span>06</span>Turnos y sedes</a>
+        </nav>
+        <div class="menu-foot wrap">
+            <a href="tel:+5493865447836">3865-447836</a>
+            <a href="mailto:carigiuri@gmail.com">carigiuri@gmail.com</a>
+            <a href="https://instagram.com/Dra.carinagiuri" target="_blank" rel="noopener">@dra.carinagiuri</a>
+        </div>
+    </dialog>
 
-        <h1>Su sitio web <span>necesita atención.</span></h1>
+    <main id="contenido">
 
-        <p class="subtitle">
-            Hola, Dra. Carina. Su sitio web no se encuentra activo en este momento.<br>
-            Para reactivarlo, comuníquese con su desarrollador web a través del botón de abajo.
-        </p>
-
-        <!-- Developer info card -->
-        <div class="doctor-info">
-            <div class="doctor-avatar" style="background: linear-gradient(135deg, #D97706, #F59E0B);">GC</div>
-            <div class="doctor-text">
-                <p class="doctor-name">Giuliano Carbone</p>
-                <p class="doctor-specialty">Desarrollador Web · Su sitio</p>
+        <!-- ============ Hero ============ -->
+        <section class="hero" id="inicio" aria-labelledby="hero-title">
+            <div class="hero-media">
+                <img src="assets/img/PERFIL.jpg" width="693" height="884" fetchpriority="high"
+                    alt="La Dra. Carina Giuri realizando un tratamiento inyectable" />
+                <span class="hero-caption">M.N. 23.903.785</span>
             </div>
-        </div>
-
-        <!-- Info items -->
-        <div class="progress-wrap">
-            <div class="progress-label" style="justify-content: flex-start; gap: 8px; margin-bottom: 6px;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="color:#D97706; flex-shrink:0; margin-top:1px">
-                    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-                </svg>
-                <span style="color:#92400E; font-weight:600;">Su suscripción de hosting puede haber vencido</span>
+            <div class="hero-head">
+                <p class="kicker">Cirujana · Flebóloga UCA · Medicina estética</p>
+                <h1 id="hero-title">Estética y flebología con mirada de cirujana.</h1>
             </div>
-            <div class="progress-label" style="justify-content: flex-start; gap: 8px;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="color:#D97706; flex-shrink:0; margin-top:1px">
-                    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-                </svg>
-                <span style="color:#92400E; font-weight:600;">O bien, necesita renovar el servicio web</span>
+            <div class="hero-body">
+                <p class="lead">
+                    Médica con Diploma de Honor de la Universidad Favaloro, cirujana general y flebóloga.
+                    Más de veinte años de práctica quirúrgica aplicados a tratamientos estéticos seguros
+                    y de resultado natural.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn btn-solid" data-wa="Hola Dra. Giuri, quisiera solicitar un turno."
+                        href="https://wa.me/5493865447836" target="_blank" rel="noopener">
+                        <svg aria-hidden="true"><use href="#i-wa" /></svg> Pedir turno por WhatsApp
+                    </a>
+                    <a class="btn btn-line" href="#tratamientos">Ver tratamientos</a>
+                </div>
+                <p class="hero-where">Atiende en <strong>Monteros, Tucumán</strong> y <strong>Arenales, CABA</strong></p>
             </div>
-        </div>
+        </section>
 
-        <!-- Divider -->
-        <div class="divider" aria-hidden="true">
-            <div class="divider-line"></div>
-            <span class="divider-text">Contactar al desarrollador</span>
-            <div class="divider-line"></div>
-        </div>
+        <!-- ============ Ficha ============ -->
+        <section class="ficha" aria-label="Ficha profesional">
+            <dl class="wrap ficha-grid">
+                <div class="reveal">
+                    <dt>Formación</dt>
+                    <dd>Médica, Universidad Favaloro<small>Diploma de Honor, 1998</small></dd>
+                </div>
+                <div class="reveal">
+                    <dt>Especialidades</dt>
+                    <dd>Cirugía General<small>Flebología y Linfología, UCA</small></dd>
+                </div>
+                <div class="reveal">
+                    <dt>Estética</dt>
+                    <dd>Posgrado trienal avanzado<small>Asociación Médica Argentina</small></dd>
+                </div>
+                <div class="reveal">
+                    <dt>Experiencia</dt>
+                    <dd>12 años como jefa de quirófano<small>Hospital Regional de Concepción</small></dd>
+                </div>
+            </dl>
+        </section>
 
-        <!-- WhatsApp Button -->
-        <a
-            id="btn-whatsapp-reactivar"
-            href="https://wa.me/543863552800?text=Hola%20Giuliano%2C%20soy%20la%20Dra.%20Carina%20Giuri.%20Vi%20el%20aviso%20en%20mi%20sitio%20y%20me%20gustar%C3%ADa%20gestionar%20la%20reactivaci%C3%B3n%20de%20mi%20p%C3%A1gina%20web."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-whatsapp"
-            aria-label="Contactar al desarrollador por WhatsApp"
-        >
-            <!-- WhatsApp SVG logo -->
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-            </svg>
-            Reactivar mi sitio web
-        </a>
+        <!-- ============ 01 Sobre mí ============ -->
+        <section class="section" id="sobre-mi" aria-labelledby="about-title">
+            <div class="wrap about">
+                <p class="label reveal"><span>01</span>Sobre mí</p>
+                <h2 id="about-title" class="statement reveal">
+                    Doce años al frente de un centro quirúrgico. Hoy, esa precisión está al servicio de la
+                    estética.
+                </h2>
+                <div class="about-body">
+                    <div class="prose reveal">
+                        <p>
+                            Me formé como cirujana general en el Policlínico Bancario y como especialista en
+                            flebología en la Universidad Católica Argentina. Entre 2011 y 2023 fui jefa del Centro
+                            Quirúrgico del Hospital Regional de Concepción.
+                        </p>
+                        <p>
+                            En paralelo completé el posgrado trienal de Medicina Estética de la Asociación Médica
+                            Argentina y me capacité en anatomía y disección en ICLO Verona, Italia. Conocer el
+                            cuerpo desde adentro cambia la forma de tratarlo desde afuera.
+                        </p>
+                        <p>
+                            Cada consulta empieza por escucharte y evaluarte. Recién después, y solo si
+                            corresponde, elegimos un tratamiento.
+                        </p>
+                        <button type="button" class="link" data-open="cv">
+                            Ver trayectoria completa <svg aria-hidden="true"><use href="#i-arrow" /></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- Footer note -->
-        <p class="footer-note">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.1-1.1a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-            </svg>
-            Desarrollado por Giuliano Carbone · +54 386 355 2800
-        </p>
+        <!-- ============ 02 Tratamientos ============ -->
+        <section class="section" id="tratamientos" aria-labelledby="treat-title">
+            <div class="wrap">
+                <p class="label reveal"><span>02</span>Tratamientos</p>
+                <div class="section-head reveal">
+                    <h2 id="treat-title">Qué tratamos</h2>
+                    <p>Tocá un tratamiento para ver en qué consiste. La indicación siempre surge de una evaluación
+                        médica.</p>
+                </div>
+                <ul class="tiles" role="list">
+                    <li class="tile tile-feature reveal">
+                        <button type="button" data-treatment="flebologia">
+                            <img src="assets/img/tratamientos/flebologia.jpg" width="768" height="1024" loading="lazy" alt="" />
+                            <span class="tile-text">
+                                <span class="tile-cat">Vascular</span>
+                                <span class="tile-name">Flebología</span>
+                                <span class="tile-desc">Várices, arañitas y enfermedad venosa y linfática</span>
+                            </span>
+                        </button>
+                    </li>
+                    <li class="tile reveal">
+                        <button type="button" data-treatment="inyectables">
+                            <img src="assets/img/tratamientos/inyectables.jpg" width="768" height="1024" loading="lazy" alt="" />
+                            <span class="tile-text">
+                                <span class="tile-cat">Rostro</span>
+                                <span class="tile-name">Inyectables faciales</span>
+                                <span class="tile-desc">Toxina botulínica, ácido hialurónico y enzimas</span>
+                            </span>
+                        </button>
+                    </li>
+                    <li class="tile reveal">
+                        <button type="button" data-treatment="bioestimulacion">
+                            <img src="assets/img/tratamientos/bioestimulacion.jpg" width="768" height="1024" loading="lazy" alt="" />
+                            <span class="tile-text">
+                                <span class="tile-cat">Rostro</span>
+                                <span class="tile-name">Bioestimulación</span>
+                                <span class="tile-desc">Profhilo, HarmonyCa e hilos tensores</span>
+                            </span>
+                        </button>
+                    </li>
+                    <li class="tile reveal">
+                        <button type="button" data-treatment="rinomodelacion">
+                            <img src="assets/img/tratamientos/rinomodelacion.jpg" width="768" height="1024" loading="lazy" alt="" />
+                            <span class="tile-text">
+                                <span class="tile-cat">Rostro</span>
+                                <span class="tile-name">Rinomodelación</span>
+                                <span class="tile-desc">Perfilado nasal sin cirugía</span>
+                            </span>
+                        </button>
+                    </li>
+                    <li class="tile reveal">
+                        <button type="button" data-treatment="mesoterapia">
+                            <img src="assets/img/tratamientos/mesoterapia.jpg" width="768" height="1024" loading="lazy" alt="" />
+                            <span class="tile-text">
+                                <span class="tile-cat">Piel</span>
+                                <span class="tile-name">Mesoterapia</span>
+                                <span class="tile-desc">Vitaminas y aminoácidos directo en la piel</span>
+                            </span>
+                        </button>
+                    </li>
+                    <li class="tile reveal">
+                        <button type="button" data-treatment="prp">
+                            <img src="assets/img/tratamientos/prp.jpg" width="768" height="1024" loading="lazy" alt="" />
+                            <span class="tile-text">
+                                <span class="tile-cat">Piel</span>
+                                <span class="tile-name">Plasma rico en plaquetas</span>
+                                <span class="tile-desc">Regeneración con tu propio plasma</span>
+                            </span>
+                        </button>
+                    </li>
+                    <li class="tile reveal">
+                        <button type="button" data-treatment="peeling">
+                            <img src="assets/img/tratamientos/peeling.jpg" width="768" height="1024" loading="lazy" alt="" />
+                            <span class="tile-text">
+                                <span class="tile-cat">Piel</span>
+                                <span class="tile-name">Peeling químico</span>
+                                <span class="tile-desc">Manchas, acné y textura irregular</span>
+                            </span>
+                        </button>
+                    </li>
+                    <li class="tile reveal">
+                        <button type="button" data-treatment="pellets">
+                            <img src="assets/img/tratamientos/pellets.jpg" width="768" height="1024" loading="lazy" alt="" />
+                            <span class="tile-text">
+                                <span class="tile-cat">Bienestar</span>
+                                <span class="tile-name">Pellets hormonales</span>
+                                <span class="tile-desc">Reemplazo hormonal bioidéntico</span>
+                            </span>
+                        </button>
+                    </li>
+                    <li class="tile reveal">
+                        <button type="button" data-treatment="antiage">
+                            <img src="assets/img/tratamientos/antiage.jpg" width="768" height="1024" loading="lazy" alt="" />
+                            <span class="tile-text">
+                                <span class="tile-cat">Bienestar</span>
+                                <span class="tile-name">Medicina anti-age</span>
+                                <span class="tile-desc">Nutrigenómica orthomolecular</span>
+                            </span>
+                        </button>
+                    </li>
+                </ul>
+                <p class="tiles-note">Imágenes ilustrativas.</p>
+            </div>
+        </section>
 
+        <!-- ============ 03 Primera consulta ============ -->
+        <section class="section dark" id="primera-consulta" aria-labelledby="steps-title">
+            <div class="wrap">
+                <p class="label reveal"><span>03</span>Primera consulta</p>
+                <h2 id="steps-title" class="reveal">Cómo empezamos</h2>
+                <ol class="steps" role="list">
+                    <li class="reveal">
+                        <span class="step-n">1</span>
+                        <div>
+                            <h3>Escribís por WhatsApp</h3>
+                            <p>Coordinamos día, horario y sede según tu disponibilidad. Siempre con cita previa.</p>
+                        </div>
+                    </li>
+                    <li class="reveal">
+                        <span class="step-n">2</span>
+                        <div>
+                            <h3>Evaluación médica</h3>
+                            <p>Una consulta clínica completa, vascular o estética, para entender tu caso y tus
+                                expectativas.</p>
+                        </div>
+                    </li>
+                    <li class="reveal">
+                        <span class="step-n">3</span>
+                        <div>
+                            <h3>Plan a tu medida</h3>
+                            <p>Te explico las opciones con claridad y definimos juntos el tratamiento y su
+                                seguimiento.</p>
+                        </div>
+                    </li>
+                </ol>
+                <a class="btn btn-light reveal" data-wa="Hola Dra. Giuri, quisiera coordinar una primera consulta."
+                    href="https://wa.me/5493865447836" target="_blank" rel="noopener">
+                    <svg aria-hidden="true"><use href="#i-wa" /></svg> Coordinar primera consulta
+                </a>
+            </div>
+        </section>
+
+        <!-- ============ 04 Experiencias ============ -->
+        <section class="section" id="experiencias" aria-labelledby="quotes-title">
+            <div class="wrap">
+                <p class="label reveal"><span>04</span>Experiencias</p>
+                <h2 id="quotes-title" class="sr-only">Experiencias de pacientes</h2>
+            </div>
+            <div class="quotes" tabindex="0" aria-label="Testimonios, deslizá para ver más">
+                <figure class="quote reveal">
+                    <blockquote>
+                        Me realicé un tratamiento de várices y los resultados fueron increíbles. La atención de la
+                        Dra. es impecable y muy cálida.
+                    </blockquote>
+                    <figcaption>María G. <span>Tratamiento flebológico</span></figcaption>
+                </figure>
+                <figure class="quote reveal">
+                    <blockquote>
+                        Súper conforme con el botox y los rellenos. Resultados naturales, que era lo que buscaba.
+                        Me sentí muy segura en sus manos.
+                    </blockquote>
+                    <figcaption>Ana P. <span>Estética facial</span></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ============ 05 Preguntas ============ -->
+        <section class="section" id="preguntas" aria-labelledby="faq-title">
+            <div class="wrap faq">
+                <div class="faq-head">
+                    <p class="label reveal"><span>05</span>Preguntas</p>
+                    <h2 id="faq-title" class="reveal">Antes de tu consulta</h2>
+                </div>
+                <div class="faq-list reveal">
+                    <details>
+                        <summary>¿Cómo es la primera consulta?</summary>
+                        <p>Realizamos una evaluación clínica completa, vascular o estética, para diseñar un plan de
+                            tratamiento personalizado y seguro.</p>
+                    </details>
+                    <details>
+                        <summary>¿Aceptan obras sociales?</summary>
+                        <p>Para flebología, consultá la cobertura de tu plan. Los tratamientos estéticos son
+                            particulares; se puede emitir factura para reintegro si tu plan lo permite.</p>
+                    </details>
+                    <details>
+                        <summary>¿Dónde atiende?</summary>
+                        <p>En su consultorio de Alberdi 320, Monteros, Tucumán, y en Banegas Estética Médica,
+                            Arenales, CABA. En ambas sedes se requiere cita previa.</p>
+                    </details>
+                    <details>
+                        <summary>¿Los tratamientos estéticos requieren reposo?</summary>
+                        <p>La mayoría de los tratamientos inyectables son ambulatorios y permiten retomar la vida
+                            normal al salir. En la consulta te explicamos los cuidados de cada procedimiento.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ 06 Contacto ============ -->
+        <section class="section contact" id="contacto" aria-labelledby="contact-title">
+            <div class="wrap">
+                <p class="label reveal"><span>06</span>Turnos y sedes</p>
+                <h2 id="contact-title" class="reveal">Pedí tu turno</h2>
+
+                <div class="contact-grid">
+                    <form class="booking reveal" id="booking-form" novalidate>
+                        <p class="booking-intro">Completá estos datos y te abrimos WhatsApp con el mensaje listo
+                            para enviar.</p>
+
+                        <div class="field">
+                            <label for="f-name">Tu nombre</label>
+                            <input class="input" id="f-name" name="name" type="text" autocomplete="name"
+                                enterkeyhint="next" required aria-describedby="f-name-err" />
+                            <span class="field-error" id="f-name-err">Escribí tu nombre para continuar.</span>
+                        </div>
+
+                        <div class="field">
+                            <label for="f-reason">Motivo</label>
+                            <select class="input" id="f-reason" name="reason">
+                                <option>Consulta general</option>
+                                <option>Flebología / várices</option>
+                                <option>Inyectables faciales</option>
+                                <option>Bioestimulación</option>
+                                <option>Rinomodelación</option>
+                                <option>Mesoterapia</option>
+                                <option>Plasma rico en plaquetas</option>
+                                <option>Peeling químico</option>
+                                <option>Pellets hormonales</option>
+                                <option>Medicina anti-age</option>
+                            </select>
+                        </div>
+
+                        <fieldset class="field">
+                            <legend>Sede</legend>
+                            <div class="seg">
+                                <label><input type="radio" name="place" value="Monteros" checked /><span>Monteros</span></label>
+                                <label><input type="radio" name="place" value="CABA" /><span>CABA</span></label>
+                                <label><input type="radio" name="place" value="Indistinto" /><span>Indistinto</span></label>
+                            </div>
+                        </fieldset>
+
+                        <button type="submit" class="btn btn-solid btn-block">
+                            <svg aria-hidden="true"><use href="#i-wa" /></svg> Continuar en WhatsApp
+                        </button>
+                        <p class="form-note">Tus datos no se guardan en este sitio.</p>
+                    </form>
+
+                    <div class="contact-side">
+                        <ul class="direct reveal" role="list">
+                            <li><a href="tel:+5493865447836">
+                                    <svg aria-hidden="true"><use href="#i-phone" /></svg>
+                                    <span>Llamar<small>3865-447836</small></span>
+                                </a></li>
+                            <li><a href="mailto:carigiuri@gmail.com">
+                                    <svg aria-hidden="true"><use href="#i-mail" /></svg>
+                                    <span>Email<small>carigiuri@gmail.com</small></span>
+                                </a></li>
+                            <li><a href="https://instagram.com/Dra.carinagiuri" target="_blank" rel="noopener">
+                                    <svg aria-hidden="true"><use href="#i-ig" /></svg>
+                                    <span>Instagram<small>@dra.carinagiuri</small></span>
+                                </a></li>
+                        </ul>
+
+                        <div class="places">
+                            <a class="place reveal" href="https://maps.google.com/?q=Alberdi+320,+Monteros,+Tucum%C3%A1n"
+                                target="_blank" rel="noopener">
+                                <span class="place-city">Monteros</span>
+                                <span class="place-addr">Alberdi 320 · Tucumán<small>Consultorio particular</small></span>
+                                <span class="place-go">Cómo llegar <svg aria-hidden="true"><use href="#i-out" /></svg></span>
+                            </a>
+                            <a class="place reveal"
+                                href="https://maps.google.com/?q=Banegas+Est%C3%A9tica+M%C3%A9dica+Arenales+CABA"
+                                target="_blank" rel="noopener">
+                                <span class="place-city">Buenos Aires</span>
+                                <span class="place-addr">Arenales · CABA<small>Banegas Estética Médica</small></span>
+                                <span class="place-go">Cómo llegar <svg aria-hidden="true"><use href="#i-out" /></svg></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- ============ Footer ============ -->
+    <footer class="site-footer">
+        <div class="wrap">
+            <p class="footer-name">Dra. Carina Giuri</p>
+            <p class="footer-sub">Medicina estética, flebología y cirugía general · M.N. 23.903.785</p>
+            <p class="footer-legal">La información de este sitio es de carácter educativo y no reemplaza la consulta
+                médica. Ante una emergencia, comunicate al 107.</p>
+            <p class="footer-legal">© <span id="year">2026</span></p>
+        </div>
+    </footer>
+
+    <!-- Barra fija mobile -->
+    <div class="dock" id="dock">
+        <a class="dock-main" data-wa="Hola Dra. Giuri, quisiera solicitar un turno."
+            href="https://wa.me/5493865447836" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-wa" /></svg> Pedir turno
+        </a>
+        <a class="dock-call" href="tel:+5493865447836" aria-label="Llamar al 3865-447836">
+            <svg aria-hidden="true"><use href="#i-phone" /></svg>
+        </a>
+    </div>
+
+    <!-- ============ Ficha de tratamiento (bottom sheet) ============ -->
+    <dialog class="sheet" id="treatment" aria-labelledby="t-title">
+        <div class="sheet-grab sheet-hero">
+            <img id="t-img" src="assets/img/tratamientos/flebologia.jpg" width="768" height="1024" alt="" />
+            <span class="grabber" aria-hidden="true"></span>
+            <button class="sheet-close" type="button" aria-label="Cerrar" data-close>
+                <svg aria-hidden="true"><use href="#i-close" /></svg>
+            </button>
+            <p class="t-cat" id="t-cat"></p>
+            <h2 id="t-title"></h2>
+            <p class="t-sub" id="t-subtitle"></p>
+        </div>
+        <div class="sheet-body">
+            <p class="t-lead" id="t-desc"></p>
+            <h3>Para quién es</h3>
+            <p id="t-target"></p>
+            <h3>Beneficios</h3>
+            <ul class="t-benefits" id="t-benefits" role="list"></ul>
+        </div>
+        <div class="sheet-foot">
+            <a class="btn btn-solid btn-block" id="t-cta" href="https://wa.me/5493865447836" target="_blank"
+                rel="noopener">
+                <svg aria-hidden="true"><use href="#i-wa" /></svg> Consultar por este tratamiento
+            </a>
+        </div>
+    </dialog>
+
+    <!-- ============ Trayectoria (bottom sheet) ============ -->
+    <dialog class="sheet sheet-tall" id="cv" aria-labelledby="cv-title">
+        <div class="sheet-grab">
+            <span class="grabber" aria-hidden="true"></span>
+            <button class="sheet-close" type="button" aria-label="Cerrar" data-close>
+                <svg aria-hidden="true"><use href="#i-close" /></svg>
+            </button>
+            <p class="t-cat">Dra. Carina Giuri</p>
+            <h2 id="cv-title">Trayectoria</h2>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Secciones de la trayectoria">
+            <button class="tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true">Títulos</button>
+            <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1">Experiencia</button>
+            <button class="tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1">Cursos</button>
+            <button class="tab" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false" tabindex="-1">Publicaciones</button>
+        </div>
+
+        <div class="sheet-body">
+            <div role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0">
+                <h3>Títulos universitarios</h3>
+                <ul class="cv" role="list">
+                    <li><span class="cv-y">1998</span><div><strong>Médica · Diploma de Honor</strong>Universidad Favaloro (1991 – 1998)</div></li>
+                    <li><span class="cv-y">2002</span><div><strong>Especialista en Cirugía General</strong>Asociación Argentina de Cirugía (2001 – 2002). Residencia de 4 años en el Policlínico Bancario POBA (1999 – 2002). Universidad de Buenos Aires (2003 – 2005)</div></li>
+                    <li><span class="cv-y">2015</span><div><strong>Especialista en Flebología y Linfología</strong>Universidad Católica Argentina (2014 – 2015)</div></li>
+                </ul>
+                <h3>Posgrados</h3>
+                <ul class="cv" role="list">
+                    <li><span class="cv-y">2023</span><div><strong>Posgrado Trienal Avanzado en Medicina Estética y Antienvejecimiento</strong>Asociación Médica Argentina · Dir. Dr. Raúl Banegas (2021 – 2023)</div></li>
+                    <li><span class="cv-y">2023</span><div><strong>Hands-on Training en Anatomía y Disección Cadavérica</strong>ICLO Verona, Italia</div></li>
+                    <li><span class="cv-y">2019</span><div><strong>Diplomatura en Clínica y Terapéutica Estética</strong>Universidad Nacional de Tucumán (2017 – 2019) · 500 hs</div></li>
+                    <li><span class="cv-y">2009</span><div><strong>Diplomatura en Gestión y Dirección en Sistemas de Salud</strong>Universidad San Pablo T (2008 – 2009)</div></li>
+                </ul>
+            </div>
+
+            <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" tabindex="0" hidden>
+                <h3>Actualidad</h3>
+                <ul class="cv" role="list">
+                    <li><span class="cv-y">Hoy</span><div><strong>Consultorio particular</strong>Alberdi 320, Monteros, Tucumán</div></li>
+                    <li><span class="cv-y">Hoy</span><div><strong>Sanatorio Nuestra Señora del Rosario</strong>Cirugía General y Flebología</div></li>
+                    <li><span class="cv-y">Hoy</span><div><strong>Staff médico especialista</strong>Banegas Estética Médica (Arenales, CABA) · Centro Médico Estético BLER, médica flebóloga</div></li>
+                    <li><span class="cv-y">2023</span><div><strong>Hospital La Madrid, Monteros</strong>Médica cirujana (desde junio 2023)</div></li>
+                </ul>
+                <h3>Antecedentes</h3>
+                <ul class="cv" role="list">
+                    <li><span class="cv-y">2011</span><div><strong>Jefa del Centro Quirúrgico</strong>Hospital Regional de Concepción “Miguel Belascuaín” (2011 – mayo 2023)</div></li>
+                </ul>
+            </div>
+
+            <div role="tabpanel" id="panel-3" aria-labelledby="tab-3" tabindex="0" hidden>
+                <h3>2021 – 2024</h3>
+                <ul class="plain" role="list">
+                    <li>Seminario “Complicaciones en Medicina Estética” · Univ. Maimónides, 2024</li>
+                    <li>Galderma Regional Trip Buenos Aires · 2023</li>
+                    <li>Teoría y aplicación HarmonyCa™ · 2023</li>
+                    <li>Taller de Bioremodelación y Bioestimulantes · 2023</li>
+                    <li>Rinomodelación con inyectables · 2023</li>
+                    <li>Terapia de reemplazo y modulación hormonal · Dr. Lamagni, 2023</li>
+                    <li>Máscara Siluma: química y aplicaciones · 2023</li>
+                    <li>BAAS Buenos Aires · 2023</li>
+                    <li>Join OXA 2 · 2023</li>
+                    <li>Hands-on Training Anatomía y Disección Cadavérica · ICLO Verona, 2023</li>
+                    <li>Tercio inferior con rellenos de hialurónico · Centro Banegas, 2022</li>
+                    <li>Tratamiento de ojeras con fillers · 2022</li>
+                    <li>Taller Hands On Hilos Tensores · 2022</li>
+                    <li>Capacitación Hilos Aptos · 2022</li>
+                    <li>Masterclass Toxina y Rellenos Avanzado · Merz Aesthetics, 2022</li>
+                    <li>The Magic of the Beauty · Oxamedical, 2022</li>
+                    <li>Jornada One to One Técnicas Avanzadas Inyectables · Dr. Raúl Banegas, 2022</li>
+                    <li>Masterclass Nuevo Paradigma Antiage · 2021</li>
+                    <li>Taller Bioestimulación Hands On · 2021</li>
+                    <li>Capacitación PROFHILO · Skintegrity, 2021</li>
+                </ul>
+                <h3>2014 – 2020</h3>
+                <ul class="plain" role="list">
+                    <li>Abordaje Nutrigenómico Orthomolecular · Fimon OMOL, 2020</li>
+                    <li>30° Congreso de Medicina Estética · Inst. Pintos, 2020</li>
+                    <li>Enzimas Recombinantes Biológicas · Dra. Castelanich, 2020</li>
+                    <li>Peelings y Patologías de la Piel · Dra. Irene Bermejo, 2020</li>
+                    <li>Taller de Pellets y Reemplazo Hormonal · 2020</li>
+                    <li>Masterclass Toxina + Fillers · Dr. Escobar, 2020</li>
+                    <li>Face-BB Glow, Bionutrilifting y Skinbooster · Inst. Pinto, 2020</li>
+                    <li>BAAS Buenos Aires · 2018</li>
+                    <li>XVI Congreso Panamericano de Flebología · 2014</li>
+                    <li>Bioseguridad para el uso de Láser y Luz Pulsada · 2014</li>
+                    <li>XXIV Congreso de Medicina Estética SOARME · 2014</li>
+                </ul>
+                <h3>Educación continua</h3>
+                <ul class="plain" role="list">
+                    <li>Curso Anual en Nutrición Orthomolecular y Nutrigenómica · Fimon</li>
+                    <li>V Congreso Argentino de Medicina Estética · UBA, 2013</li>
+                    <li>Medicina, Nutrición y Entrenamiento para la Salud · Niveles 1 y 2</li>
+                    <li>Curso Cuatrimestral de Medicina Estética · Asociación Médica Argentina</li>
+                    <li>Actualización en Enfermedad Venosa y Linfática · 2003</li>
+                </ul>
+            </div>
+
+            <div role="tabpanel" id="panel-4" aria-labelledby="tab-4" tabindex="0" hidden>
+                <h3>Libro</h3>
+                <ul class="cv" role="list">
+                    <li><span class="cv-y">2003</span><div><strong>La tiroidectomía: técnica quirúrgica y consideraciones generales</strong></div></li>
+                </ul>
+                <h3>Artículos científicos</h3>
+                <ul class="cv" role="list">
+                    <li><span class="cv-y">2004</span><div><strong>Aneurismas de la arteria pancreatoduodenal</strong>Prensa Médica Argentina</div></li>
+                    <li><span class="cv-y">2004</span><div><strong>Quistes de paratiroides</strong>Revista Argentina de Cirugía</div></li>
+                    <li><span class="cv-y">2002</span><div><strong>Pie diabético: la importancia del equipo multidisciplinario</strong>Prensa Médica Argentina</div></li>
+                </ul>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="assets/js/main.js" defer></script>
 </body>
+
 </html>
